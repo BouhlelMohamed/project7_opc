@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PhoneController extends AbstractController
 {
     /**
-     * @Route("/api/phone", name="all_phones",methods={"GET"})
+     * @Route("/api/phone", name="phone",methods={"GET"})
      */
     public function getAll(PhoneRepository $repo)
     {
