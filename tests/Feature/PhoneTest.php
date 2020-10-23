@@ -19,7 +19,7 @@ class PhoneTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/phone/1');
+        $client->request('GET', '/api/phone/111');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
