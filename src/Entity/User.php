@@ -34,7 +34,6 @@ class User
 
     /**
      * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="users")
-     * @Groups("customer:read")
      */
     private $customer;
 

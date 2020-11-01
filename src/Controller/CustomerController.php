@@ -19,9 +19,9 @@ class CustomerController extends AbstractController
     /**
      * @Route("/api/customers/{id}/users", name="customers_users",methods={"GET"})
      */
-    public function getAllUsersWhoHaveAConnectionWithACustomer(CustomerRepository $customerRepo,UserRepository $repo,int $id,SerializerInterface $serializer)
+    public function getAllUsersWhoHaveAConnectionWithACustomer(CustomerRepository $customerRepo,int $id)
     {
-        $customer = $customerRepo->findOneById($id);
-        return $this->json($customer->getUsers()->toArray(),200,[],['groups' => 'customer:read']);
+        $customer = $customerRepo->findOneById($id)->getUsers()->toArray();
+        return $this->json($customer,200,[],['groups' => ['customer:read']]);
     }
 }
