@@ -34,8 +34,9 @@ class User
 
     /**
      * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="users")
+     * @Groups("customer:read")
      */
-    private $Customer;
+    private $customer;
 
     public function getId(): ?int
     {
@@ -68,12 +69,12 @@ class User
 
     public function getCustomer(): ?Customer
     {
-        return $this->Customer;
+        return $this->customer;
     }
 
-    public function setCustomer(?Customer $Customer): self
+    public function setCustomer(?Customer $customer): self
     {
-        $this->Customer = $Customer;
+        $this->customer = $customer;
 
         return $this;
     }

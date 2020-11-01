@@ -28,7 +28,7 @@ class Customer
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="Customer")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="customer")
      * @Groups("customer:read")
      */
     private $users;
