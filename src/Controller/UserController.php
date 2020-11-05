@@ -34,11 +34,17 @@ class UserController extends AbstractController
     /**
      * @Route("/api/users/{userId}/customers/{customerId}", name="delete_user",methods={"DELETE"})
      */
-    public function deleteUser(int $userId,int $customerId,UserRepository $userRepo,EntityManagerInterface $em)
+    public function deleteUser(int $userId,int $customerId,UserRepository $userRepo,CustomerRepository $customerRepo,EntityManagerInterface $em)
     {
+        $customerId = $customerRepo->findOneById($customerId);
+
         $user = $userRepo->findOneById($userId);
-        $em->remove($user);
-        $em->flush();    
-        return $this->json('User '.$user->getUsername().' is deleted');
+
+        if($user->getCustomer()->getId() === $customerId->getId()){
+            $em->remove($user);
+            $em->flush();    
+            return $this->json('User '.$user->getUsername().' is deleted',200);
+        }
+        return $this->json('Unauthorized',403);
     }
 }

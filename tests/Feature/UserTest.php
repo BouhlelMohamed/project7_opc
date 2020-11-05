@@ -49,6 +49,23 @@ class UserTest extends WebTestCase
 
         $this->client->request("DELETE", "/api/users/$userId/customers/$customerId");
 
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        if($this->user->getCustomer()->getId() === $customerId){
+            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        }else {
+            $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
+        }
+    }
+
+    public function testCannotDeleteOneUser()
+    {
+        $customer2 = $this->addCustomers($this->entityManager);
+        
+        $customerId = $customer2->getId();
+
+        $userId = $this->user->getId();
+
+        $this->client->request("DELETE", "/api/users/$userId/customers/$customerId");
+
+        $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
     }
 }
