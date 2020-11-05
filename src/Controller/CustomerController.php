@@ -2,17 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Customer;
-use App\Entity\User;
 use App\Repository\CustomerRepository;
 use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class CustomerController extends AbstractController
 {

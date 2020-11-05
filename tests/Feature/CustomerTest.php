@@ -2,11 +2,8 @@
 
 namespace App\Tests\Controller;
 
-use App\Entity\Customer;
 use App\Tests\DataTraits\CustomersData;
 use App\Tests\DataTraits\UsersData;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CustomerTest extends WebTestCase
@@ -30,7 +27,7 @@ class CustomerTest extends WebTestCase
 
         $this->userTest1 = $this->addUsers($this->entityManager,$this->customer,1);
 
-        $this->user = $this->addUsers($this->entityManager,$this->customer,2);
+        $this->user = $this->addUsers($this->entityManager,$this->customer,1);
     }
 
     public function testGetAllUsersWhoHaveAConnectionWithACustomer()

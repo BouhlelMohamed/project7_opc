@@ -2,7 +2,6 @@
 
 namespace App\Tests\Controller;
 
-use App\Entity\Phone;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class PhoneTest extends WebTestCase
