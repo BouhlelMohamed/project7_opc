@@ -35,4 +35,14 @@ class PhoneTest extends WebTestCase
             $this->assertArrayHasKey($value,$phone);
         }
     }
+
+    public function testInsertOnePhone()
+    {
+        $client = static::createClient();
+
+        $client->request('POST', '/api/phone',['name'=> 'Iphone XR','price' => 1250,
+        'color' => 'Red','description' => 'Best Phone']);
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
 }
