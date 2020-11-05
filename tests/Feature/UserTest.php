@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class UserTest extends WebTestCase
 {
     use CustomersData;
+    use UsersData;
 
     protected function setUp(): void
     {
@@ -23,6 +24,8 @@ class UserTest extends WebTestCase
             ->getManager();
 
         $this->customer = $this->addCustomers($this->entityManager);
+
+        $this->user = $this->addUsers($this->entityManager,$this->customer);        
     }
 
     public function testAddANewUserLinkedToACustomer()
@@ -36,5 +39,16 @@ class UserTest extends WebTestCase
         $response[] = (array)json_decode($this->client->getResponse()->getContent());
 
         $this->assertCount(1,$response);
+    }
+
+    public function testDeleteOneUser()
+    {
+        $customerId = $this->customer->getId();
+
+        $userId = $this->user->getId();
+
+        $this->client->request("DELETE", "/api/users/$userId/customers/$customerId");
+
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 }

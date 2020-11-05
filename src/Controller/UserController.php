@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\CustomerRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,4 +31,14 @@ class UserController extends AbstractController
         return $this->json($user,200,[],['groups' => ['customer:read']]);
     }
 
+    /**
+     * @Route("/api/users/{userId}/customers/{customerId}", name="delete_user",methods={"DELETE"})
+     */
+    public function deleteUser(int $userId,int $customerId,UserRepository $userRepo,EntityManagerInterface $em)
+    {
+        $user = $userRepo->findOneById($userId);
+        $em->remove($user);
+        $em->flush();    
+        return $this->json('User '.$user->getUsername().' is deleted');
+    }
 }

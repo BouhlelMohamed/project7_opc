@@ -7,9 +7,9 @@ use Doctrine\ORM\EntityManagerInterface;
 
 trait UsersData {
    
-    public function addUsers(EntityManagerInterface $em,Customer $customer,int $quantity=1)
+    public function addUsers(EntityManagerInterface $em,Customer $customer,int $quantity=0)
     {
-        for($i = 0; $i < $quantity; $i++)
+        for($i = 0; $i <= $quantity; $i++)
         {
             $user = new User();
             $user->setUsername('testUser');

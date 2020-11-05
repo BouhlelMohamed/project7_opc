@@ -25,9 +25,9 @@ class CustomerTest extends WebTestCase
 
         $this->customer = $this->addCustomers($this->entityManager);
 
-        $this->userTest1 = $this->addUsers($this->entityManager,$this->customer,1);
+        $this->userTest1 = $this->addUsers($this->entityManager,$this->customer);
 
-        $this->user = $this->addUsers($this->entityManager,$this->customer,1);
+        $this->user = $this->addUsers($this->entityManager,$this->customer);
     }
 
     public function testGetAllUsersWhoHaveAConnectionWithACustomer()
