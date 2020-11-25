@@ -6,13 +6,11 @@ security:
     providers:
         users_in_memory: { memory: null }
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
-            anonymous: true
-            lazy: true
-            provider: users_in_memory
+            main:
+                    pattern: ^/api
+                    guard:
+                        authenticators:
+                                - App\Security\JwtAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
