@@ -102,6 +102,9 @@
     "evenement/evenement": {
         "version": "v3.0.1"
     },
+    "firebase/php-jwt": {
+        "version": "v5.2.0"
+    },
     "jolicode/jolinotif": {
         "version": "v2.2.0"
     },

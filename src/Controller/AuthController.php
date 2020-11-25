@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use Namshi\JOSE\JWT;
 use App\Entity\Customer;
 use App\Repository\CustomerRepository;
+use \Firebase\JWT\JWT;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
