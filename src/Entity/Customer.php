@@ -6,12 +6,13 @@ use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerRepository::class)
  */
-class Customer
+class Customer implements UserInterface
 {
     /**
      * @ORM\Id
@@ -120,5 +121,32 @@ class Customer
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+ 	* @see UserInterface
+ 	*/
+	public function getSalt()
+	{
+    		// not needed when using the "bcrypt" algorithm in security.yaml
+	}
+
+	/**
+ 	* @see UserInterface
+ 	*/
+	public function eraseCredentials()
+	{
+    		// If you store any temporary, sensitive data on the user, clear it here
+    		// $this->plainPassword = null;
+	}
+
+    public function getRoles()
+    {
+        
+    }
+    
+    public function getUsername()
+    {
+        return $this->email;
     }
 }
