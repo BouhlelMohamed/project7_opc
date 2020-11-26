@@ -14,6 +14,7 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
+use Symfony\Component\Security\Core\Security;
 
 class JwtAuthenticator extends AbstractGuardAuthenticator 
 {
@@ -65,7 +66,7 @@ class JwtAuthenticator extends AbstractGuardAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-
+        return true;
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
