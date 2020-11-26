@@ -44,10 +44,10 @@ class AuthController extends AbstractController
                             'message' => 'email or password is wrong.',
                         ]);
                 }
-            $payload = [
-                "user" => $user->getUsername(),
-                "exp"  => (new \DateTime())->modify("+5 minutes")->getTimestamp(),
-            ];
+                $payload = [
+                    "user" => $user->getUsername(),
+                    "exp"  => (new \DateTime())->modify("+2 day")->getTimestamp(),
+                ];
 
 
                 $jwt = JWT::encode($payload, $this->getParameter('jwt_secret'), 'HS256');
