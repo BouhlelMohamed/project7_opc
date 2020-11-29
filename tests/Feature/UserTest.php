@@ -2,8 +2,12 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Customer;
+use App\Entity\Phone;
+use App\Entity\User;
 use App\Repository\CustomerRepository;
 use App\Tests\DataTraits\CustomersData;
+use App\Tests\DataTraits\TruncateDB;
 use App\Tests\DataTraits\UsersData;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -11,12 +15,19 @@ class UserTest extends WebTestCase
 {
     use CustomersData;
     use UsersData;
+    use TruncateDB;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->client = static::createClient();
+
+        $this->truncateEntities([
+            Customer::class,
+            User::class,
+            Phone::class,
+        ]);
 
         $kernel = self::bootKernel();
 

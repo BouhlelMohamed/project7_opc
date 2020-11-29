@@ -2,8 +2,12 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Customer;
+use App\Entity\Phone;
+use App\Entity\User;
 use App\Repository\CustomerRepository;
 use App\Tests\DataTraits\CustomersData;
+use App\Tests\DataTraits\TruncateDB;
 use App\Tests\DataTraits\UsersData;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -11,7 +15,7 @@ class CustomerTest extends WebTestCase
 {
     use CustomersData;
     use UsersData;
-
+    use TruncateDb;
     /**
      * @var \Symfony\Bundle\FrameworkBundle\KernelBrowser
      */
@@ -23,6 +27,18 @@ class CustomerTest extends WebTestCase
 
         $this->client = static::createClient();
 
+        $kernel = self::bootKernel();
+
+        $this->entityManager = $kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+
+        $this->truncateEntities([
+            Customer::class,
+            User::class,
+            Phone::class,
+        ]);
+
         $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin", ['email' => 'admin@admin.com', 'password' => 'admin']);
 
         $userRepository = static::$container->get(CustomerRepository::class);
@@ -30,12 +46,6 @@ class CustomerTest extends WebTestCase
         $this->loginCustomer = $userRepository->findOneByEmail('admin@admin.com');
 
         $this->client->loginUser($this->loginCustomer);
-
-        $kernel = self::bootKernel();
-
-        $this->entityManager = $kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
 
         $this->userTest1 = $this->addUsers($this->entityManager,$this->loginCustomer);
 

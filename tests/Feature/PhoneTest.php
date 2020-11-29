@@ -2,14 +2,26 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Customer;
+use App\Entity\Phone;
+use App\Entity\User;
 use App\Repository\CustomerRepository;
+use App\Tests\DataTraits\TruncateDB;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class PhoneTest extends WebTestCase
 {
+    use TruncateDb;
+
     public function setup(): void
     {
         $this->client = static::createClient();
+
+        $this->truncateEntities([
+            Customer::class,
+            User::class,
+            Phone::class,
+        ]);
 
         $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin", ['email' => 'admin@admin.com', 'password' => 'admin']);
 
@@ -18,6 +30,7 @@ class PhoneTest extends WebTestCase
         $this->loginCustomer = $customerRepository->findOneByEmail('admin@admin.com');
 
         $this->client->loginUser($this->loginCustomer);
+
     }
 
     public function testShowAllPhones()
