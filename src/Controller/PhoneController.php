@@ -9,25 +9,42 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 
 class PhoneController extends AbstractController
 {
+
+    public function __construct(CacheInterface $cache)
+    {
+        $this->cache = $cache;
+    }
+
     /**
      * @Route("/api/phone", name="all_phones",methods={"GET"})
      */
     public function getAll(PhoneRepository $repo)
     {
-        return $this->json($repo->findAll(),200,[],['groups' => 'phone:read']);
+        $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo) {
+            $item->expiresAfter(60);
+            return $repo->findAll();
+        });
+
+        return $this->json($value,200,[],['groups' => 'phone:read']);
     }
 
     /**
     * @Route("/api/phone/{id}", name="onePhone",methods={"GET"})
     */
-    public function getOne(PhoneRepository $repo,int $id)
+    public function getOnePhone(PhoneRepository $repo,int $id)
     {
-        $findOnePhone = $repo->findOneById($id);
-        if(isset($findOnePhone)) {
-            return $this->json($findOnePhone,200,[],['groups' => 'phone:read']);
+        $value = $this->cache->get('cache_one_phone', function (ItemInterface $item) use ($repo,$id) {
+            $item->expiresAfter(60);
+            return $repo->findOneById($id);
+        });
+        if(isset($value)) {
+            return $this->json($value,200,[],['groups' => 'phone:read']);
         }
         return new Response("the phone with id $id does not exist",422);
     }
@@ -35,7 +52,7 @@ class PhoneController extends AbstractController
     /**
     * @Route("/api/phone", name="insert_phone",methods={"POST"})
     */
-    public function insert(Request $request,EntityManagerInterface $em)
+    public function insertOnePhone(Request $request,EntityManagerInterface $em)
     {
         $phone = new Phone;
         $phone->setName($request->get('name'));

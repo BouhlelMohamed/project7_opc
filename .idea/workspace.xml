@@ -238,7 +238,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606476069907</updated>
       <workItem from="1606476071053" duration="1366000" />
-      <workItem from="1606664017264" duration="1667000" />
+      <workItem from="1606664017264" duration="5572000" />
     </task>
     <servers />
   </component>
@@ -258,6 +258,10 @@
       <screen x="1600" y="-183" width="1920" height="1040" />
     </state>
     <state x="2290" y="84" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606666020679" />
+    <state x="2290" y="92" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606670487889">
+      <screen x="1600" y="-183" width="1920" height="1040" />
+    </state>
+    <state x="2290" y="92" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606670487889" />
     <state x="580" y="171" key="FileChooserDialogImpl" timestamp="1606476067251">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
