@@ -2,6 +2,7 @@
 
 namespace App\Tests\Controller;
 
+use App\Repository\CustomerRepository;
 use App\Tests\DataTraits\CustomersData;
 use App\Tests\DataTraits\UsersData;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -25,7 +26,16 @@ class UserTest extends WebTestCase
 
         $this->customer = $this->addCustomers($this->entityManager);
 
-        $this->user = $this->addUsers($this->entityManager,$this->customer);        
+        $this->user = $this->addUsers($this->entityManager,$this->customer);
+
+        $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin", ['email' => 'admin@admin.com', 'password' => 'admin']);
+
+        $customerRepository = static::$container->get(CustomerRepository::class);
+
+        $this->loginCustomer = $customerRepository->findOneByEmail('admin@admin.com');
+
+        $this->client->loginUser($this->loginCustomer);
+
     }
 
     public function testAddANewUserLinkedToACustomer()

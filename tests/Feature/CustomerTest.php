@@ -2,6 +2,7 @@
 
 namespace App\Tests\Controller;
 
+use App\Repository\CustomerRepository;
 use App\Tests\DataTraits\CustomersData;
 use App\Tests\DataTraits\UsersData;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -11,11 +12,24 @@ class CustomerTest extends WebTestCase
     use CustomersData;
     use UsersData;
 
+    /**
+     * @var \Symfony\Bundle\FrameworkBundle\KernelBrowser
+     */
+    private $client;
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->client = static::createClient();
+
+        $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin", ['email' => 'admin@admin.com', 'password' => 'admin']);
+
+        $userRepository = static::$container->get(CustomerRepository::class);
+
+        $this->loginCustomer = $userRepository->findOneByEmail('admin@admin.com');
+
+        $this->client->loginUser($this->loginCustomer);
 
         $kernel = self::bootKernel();
 
@@ -23,16 +37,15 @@ class CustomerTest extends WebTestCase
             ->get('doctrine')
             ->getManager();
 
-        $this->customer = $this->addCustomers($this->entityManager);
+        $this->userTest1 = $this->addUsers($this->entityManager,$this->loginCustomer);
 
-        $this->userTest1 = $this->addUsers($this->entityManager,$this->customer);
+        $this->user = $this->addUsers($this->entityManager,$this->loginCustomer);
 
-        $this->user = $this->addUsers($this->entityManager,$this->customer);
     }
 
     public function testGetAllUsersWhoHaveAConnectionWithACustomer()
     {
-        $customerId = $this->customer->getId();
+        $customerId = $this->loginCustomer->getId();
 
         $this->client->request('GET', "/api/customers/$customerId/users");
 
@@ -45,7 +58,7 @@ class CustomerTest extends WebTestCase
 
     public function testGetOneUserWhoHaveAConnectionWithACustomer()
     {
-        $customerId = $this->customer->getId();
+        $customerId = $this->loginCustomer->getId();
 
         $userId = $this->userTest1->getId();
 
