@@ -34,12 +34,9 @@ class CustomerController extends AbstractController
     public function getOneUserWhoHaveAConnectionWithACustomer(
     UserRepository $userRepo,int $id,int $userId)
     {
-        $value = $this->cache->get('cache_all_users_with_a_customer', function (ItemInterface $item) use ($userRepo,$userId) {
-            $item->expiresAfter(60);
-            return $userRepo->findOneById($userId);
-        });
-        if($value->getCustomer()->getId() === $id){
-            return $this->json($value,200,[],['groups' => ['customer:read']]);
+        $user = $userRepo->findOneById($userId);
+        if($user->getCustomer()->getId() === $id){
+            return $this->json($user,200,[],['groups' => ['customer:read']]);
         }
         return $this->json('Erreur',403,[],['groups' => ['customer:read']]);
     }

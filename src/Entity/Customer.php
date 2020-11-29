@@ -29,7 +29,7 @@ class Customer implements UserInterface
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="customer")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="customer", cascade={"persist", "remove" })
      * @Groups("customer:read")
      */
     private $users;

@@ -33,7 +33,7 @@ class User
     private $age;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="users")
+     * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="users", cascade={"persist", "remove" })
      */
     private $customer;
 

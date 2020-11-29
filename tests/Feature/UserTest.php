@@ -26,19 +26,20 @@ class UserTest extends WebTestCase
 
         $this->customer = $this->addCustomers($this->entityManager);
 
-        $this->user = $this->addUsers($this->entityManager,$this->customer);        
+        $this->user = $this->addUsers($this->entityManager,$this->customer);
+
+        $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin", ['email' => 'admin@admin.com', 'password' => 'admin']);
+
+        $customerRepository = static::$container->get(CustomerRepository::class);
+
+        $this->loginCustomer = $customerRepository->findOneByEmail('admin@admin.com');
+
+        $this->client->loginUser($this->loginCustomer);
+
     }
 
     public function testAddANewUserLinkedToACustomer()
     {
-        $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin", ['email' => 'admin@admin.com', 'password' => 'admin']);
-
-        $userRepository = static::$container->get(CustomerRepository::class);
-
-        $testUser = $userRepository->findOneByEmail('admin@admin.com');
-
-        $this->client->loginUser($testUser);
-
         $customerId = $this->customer->getId();
 
         $this->client->request('POST', "/api/users/customers/$customerId", ['username' => 'TestUsername', 'age' => 10, 'customerId' => $customerId]);
