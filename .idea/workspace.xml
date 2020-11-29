@@ -7,8 +7,12 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
@@ -153,16 +157,24 @@
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
     </include_path>
   </component>
+  <component name="ProjectId" id="1ks4fi6PGNZ6qceQh5w3zsEK56U" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/phpunit.xml.dist" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="PHPUnit.PhoneTest">
-    <configuration default="true" type="ComposerRunConfigurationType" factoryName="Composer Script">
-      <method v="2" />
-    </configuration>
     <configuration name="CustomerTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
@@ -178,7 +190,16 @@
           <option name="interpreterName" value="PHP" />
         </PhpTestInterpreterSettings>
       </CommandLine>
-      <TestRunner class="App\Tests\Controller\PhoneTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/PhoneTest.php" scope="Class" use_alternative_configuration_file="true" />
+      <TestRunner class="App\Tests\Controller\PhoneTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" coverage_engine="PHPDBG" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/PhoneTest.php" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PhoneTest.testShowAllPhones" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="App\Tests\Controller\PhoneTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/PhoneTest.php" method="testShowAllPhones" scope="Method" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
     <configuration name="PhoneTest.testShowOnePhone" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -201,14 +222,28 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.CustomerTest" />
         <item itemvalue="PHPUnit.PhoneTest" />
+        <item itemvalue="PHPUnit.PhoneTest.testShowAllPhones" />
+        <item itemvalue="PHPUnit.CustomerTest" />
         <item itemvalue="PHPUnit.PhoneTest.testShowOnePhone" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="868b33ff-8323-430f-9278-d45a98bcdd22" name="Default Changelist" comment="" />
+      <created>1606476069907</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606476069907</updated>
+      <workItem from="1606476071053" duration="1366000" />
+      <workItem from="1606664017264" duration="861000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="380" y="85" key="#Test_Frameworks" timestamp="1606471011883">
@@ -219,26 +254,30 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1606471531129" />
-    <state x="580" y="171" key="FileChooserDialogImpl" timestamp="1606471524447">
+    <state x="580" y="171" key="FileChooserDialogImpl" timestamp="1606476067251">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="580" y="171" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1606471524447" />
-    <state width="1557" height="329" key="GridCell.Tab.0.bottom" timestamp="1606471760005">
+    <state x="580" y="171" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1606476067251" />
+    <state width="1557" height="160" key="GridCell.Tab.0.bottom" timestamp="1606661389650">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="329" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606471760005" />
-    <state width="1557" height="329" key="GridCell.Tab.0.center" timestamp="1606471760004">
+    <state width="1557" height="160" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606661389650" />
+    <state width="1557" height="24" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606476069168" />
+    <state width="1557" height="160" key="GridCell.Tab.0.center" timestamp="1606661389649">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="329" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1606471760004" />
-    <state width="1557" height="329" key="GridCell.Tab.0.left" timestamp="1606471760004">
+    <state width="1557" height="160" key="GridCell.Tab.0.center/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606661389649" />
+    <state width="1557" height="24" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1606476069168" />
+    <state width="1557" height="160" key="GridCell.Tab.0.left" timestamp="1606661389649">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="329" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1606471760004" />
-    <state width="1557" height="329" key="GridCell.Tab.0.right" timestamp="1606471760004">
+    <state width="1557" height="160" key="GridCell.Tab.0.left/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606661389649" />
+    <state width="1557" height="24" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1606476069168" />
+    <state width="1557" height="160" key="GridCell.Tab.0.right" timestamp="1606661389649">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="329" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1606471760004" />
+    <state width="1557" height="160" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606661389649" />
+    <state width="1557" height="24" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1606476069168" />
     <state x="301" y="75" key="SettingsEditor" timestamp="1606471418558">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -247,6 +286,21 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1606471396101" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/tests/Feature/PhoneTest.php</url>
+          <line>8</line>
+          <properties>
+            <option name="className" value="\App\Tests\Controller\PhoneTest" />
+            <option name="methodName" value="testShowAllPhones" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/project7_opc@tests.xml" NAME="tests Coverage Results" MODIFIED="1606432707143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

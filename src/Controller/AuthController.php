@@ -46,15 +46,15 @@ class AuthController extends AbstractController
                 }
                 $payload = [
                     "user" => $user->getUsername(),
-                    "exp"  => (new \DateTime())->modify("+2 day")->getTimestamp(),
+                    "exp"  => (new \DateTime())->modify("+50 day")->getTimestamp(),
                 ];
 
 
                 $jwt = JWT::encode($payload, $this->getParameter('jwt_secret'), 'HS256');
                 return $this->json([
-                    'message' => 'success!',
-                    'token' => sprintf('Bearer %s', $jwt),
-                ]);
+                        'message' => 'success!',
+                        'token' => sprintf('Bearer %s', $jwt),
+                    ]);
         }
 
 }
