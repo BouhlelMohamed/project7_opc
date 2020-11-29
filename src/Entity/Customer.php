@@ -142,7 +142,7 @@ class Customer implements UserInterface
 
     public function getRoles()
     {
-        
+        return [];
     }
     
     public function getUsername()

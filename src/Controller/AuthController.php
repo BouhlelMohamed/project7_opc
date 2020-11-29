@@ -20,38 +20,38 @@ class AuthController extends AbstractController
     {
         $password = $request->get('password');
         $email = $request->get('email');
-        $user = new Customer();
-        $user->setPassword($encoder->encodePassword($user, $password));
-        $user->setEmail($email);
+        $customer = new Customer();
+        $customer->setPassword($encoder->encodePassword($customer, $password));
+        $customer->setEmail($email);
         $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
+        $em->persist($customer);
         $em->flush();
         return $this->json([
-            'user' => $user->getEmail()
+            'user' => $customer->getEmail()
         ]);
     }
 
         /**
          * @Route("/auth/login", name="login", methods={"POST"})
          */
-        public function login(Request $request, CustomerRepository $userRepository, UserPasswordEncoderInterface $encoder)
+        public function login(Request $request, CustomerRepository $customerRepo, UserPasswordEncoderInterface $encoder)
         {
-                $user = $userRepository->findOneBy([
-                        'email'=>$request->get('email'),
-                ]);
-                if (!$user || !$encoder->isPasswordValid($user, $request->get('password'))) {
-                        return $this->json([
-                            'message' => 'email or password is wrong.',
-                        ]);
-                }
+            $customer = $customerRepo->findOneBy([
+                    'email'=>$request->get('email'),
+            ]);
+            if (!$customer || !$encoder->isPasswordValid($customer, $request->get('password'))) {
+                    return $this->json([
+                        'message' => 'email or password is wrong.',
+                    ]);
+            }
             $payload = [
-                "user" => $user->getUsername(),
-                "exp"  => (new \DateTime())->modify("+5 minutes")->getTimestamp(),
+                "customer" => $customer->getUsername(),
+                "exp"  => (new \DateTime())->modify("+50 day")->getTimestamp(),
             ];
 
 
-                $jwt = JWT::encode($payload, $this->getParameter('jwt_secret'), 'HS256');
-                return $this->json([
+            $jwt = JWT::encode($payload, $this->getParameter('jwt_secret'), 'HS256');
+            return $this->json([
                     'message' => 'success!',
                     'token' => sprintf('Bearer %s', $jwt),
                 ]);
