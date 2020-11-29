@@ -20,32 +20,32 @@ class AuthController extends AbstractController
     {
         $password = $request->get('password');
         $email = $request->get('email');
-        $user = new Customer();
-        $user->setPassword($encoder->encodePassword($user, $password));
-        $user->setEmail($email);
+        $customer = new Customer();
+        $customer->setPassword($encoder->encodePassword($customer, $password));
+        $customer->setEmail($email);
         $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
+        $em->persist($customer);
         $em->flush();
         return $this->json([
-            'user' => $user->getEmail()
+            'user' => $customer->getEmail()
         ]);
     }
 
         /**
          * @Route("/auth/login", name="login", methods={"POST"})
          */
-        public function login(Request $request, CustomerRepository $userRepository, UserPasswordEncoderInterface $encoder)
+        public function login(Request $request, CustomerRepository $customerRepo, UserPasswordEncoderInterface $encoder)
         {
-                $user = $userRepository->findOneBy([
+                $customer = $customerRepo->findOneBy([
                         'email'=>$request->get('email'),
                 ]);
-                if (!$user || !$encoder->isPasswordValid($user, $request->get('password'))) {
+                if (!$customer || !$encoder->isPasswordValid($customer, $request->get('password'))) {
                         return $this->json([
                             'message' => 'email or password is wrong.',
                         ]);
                 }
                 $payload = [
-                    "user" => $user->getUsername(),
+                    "customer" => $customer->getUsername(),
                     "exp"  => (new \DateTime())->modify("+50 day")->getTimestamp(),
                 ];
 

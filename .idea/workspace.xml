@@ -238,7 +238,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606476069907</updated>
       <workItem from="1606476071053" duration="1366000" />
-      <workItem from="1606664017264" duration="861000" />
+      <workItem from="1606664017264" duration="1667000" />
     </task>
     <servers />
   </component>
@@ -254,6 +254,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1606471531129" />
+    <state x="2290" y="84" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606666020679">
+      <screen x="1600" y="-183" width="1920" height="1040" />
+    </state>
+    <state x="2290" y="84" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606666020679" />
     <state x="580" y="171" key="FileChooserDialogImpl" timestamp="1606476067251">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -282,6 +286,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1606471418558" />
+    <state x="2267" y="-64" width="585" height="801" key="find.popup" timestamp="1606666248452">
+      <screen x="1600" y="-183" width="1920" height="1040" />
+    </state>
+    <state x="2267" y="-64" width="585" height="801" key="find.popup/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606666248452" />
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1606471396101">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

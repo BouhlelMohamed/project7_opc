@@ -28,6 +28,6 @@ class CustomerController extends AbstractController
         if($user->getCustomer()->getId() === $id){
             return $this->json($user,200,[],['groups' => ['customer:read']]);
         }
-        return $this->json('Erreur',200,[],['groups' => ['customer:read']]);
+        return $this->json('Erreur',403,[],['groups' => ['customer:read']]);
     }
 }
