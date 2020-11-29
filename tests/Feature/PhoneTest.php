@@ -2,33 +2,43 @@
 
 namespace App\Tests\Controller;
 
+use App\Repository\CustomerRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class PhoneTest extends WebTestCase
 {
+    public function setup(): void
+    {
+        $this->client = static::createClient();
+
+        $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin", ['email' => 'admin@admin.com', 'password' => 'admin']);
+
+        $customerRepository = static::$container->get(CustomerRepository::class);
+
+        $this->loginCustomer = $customerRepository->findOneByEmail('admin@admin.com');
+
+        $this->client->loginUser($this->loginCustomer);
+    }
+
     public function testShowAllPhones()
     {
-        $client = static::createClient();
+        $this->client->request('GET', '/api/phone');
 
-        $client->request('GET', '/api/phone');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200,  $this->client->getResponse()->getStatusCode());
     }
 
     public function testShowOnePhone()
     {
-        $client = static::createClient();
-
-        $client->request('POST', '/api/phone',['name'=> 'Iphone XR','price' => 1250,
+        $this->client->request('POST', '/api/phone',['name'=> 'Iphone XR','price' => 1250,
         'color' => 'Red','description' => 'Best Phone']);
 
-        $phone = (array)json_decode($client->getResponse()->getContent());
+        $phone = (array)json_decode( $this->client->getResponse()->getContent());
 
-        $client->request('GET', '/api/phone/'.$phone['id']);
+        $this->client->request('GET', '/api/phone/'.$phone['id']);
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200,  $this->client->getResponse()->getStatusCode());
 
-        $response = (array)json_decode($client->getResponse()->getContent());
+        $response = (array)json_decode( $this->client->getResponse()->getContent());
 
         foreach(array_keys($response) as $value){
             $this->assertArrayHasKey($value,$phone);
@@ -37,11 +47,9 @@ class PhoneTest extends WebTestCase
 
     public function testInsertOnePhone()
     {
-        $client = static::createClient();
-
-        $client->request('POST', '/api/phone',['name'=> 'Iphone XR','price' => 1250,
+        $this->client->request('POST', '/api/phone',['name'=> 'Iphone XR','price' => 1250,
         'color' => 'Red','description' => 'Best Phone']);
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200,  $this->client->getResponse()->getStatusCode());
     }
 }
