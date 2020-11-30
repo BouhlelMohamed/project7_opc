@@ -22,7 +22,7 @@ class PhoneController extends AbstractController
     }
 
     /**
-     * @Route("/api/phone", name="all_phones",methods={"GET"})
+     * @Route("/api/phones", name="all_phones",methods={"GET"})
      */
     public function getAll(PhoneRepository $repo)
     {
@@ -35,7 +35,7 @@ class PhoneController extends AbstractController
     }
 
     /**
-    * @Route("/api/phone/{id}", name="onePhone",methods={"GET"})
+    * @Route("/api/phones/{id}", name="onePhone",methods={"GET"})
     */
     public function getOnePhone(PhoneRepository $repo,int $id)
     {
@@ -50,7 +50,7 @@ class PhoneController extends AbstractController
     }
 
     /**
-    * @Route("/api/phone", name="insert_phone",methods={"POST"})
+    * @Route("/api/phones", name="insert_phone",methods={"POST"})
     */
     public function insertOnePhone(Request $request,EntityManagerInterface $em)
     {

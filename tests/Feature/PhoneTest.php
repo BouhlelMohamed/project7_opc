@@ -35,19 +35,19 @@ class PhoneTest extends WebTestCase
 
     public function testShowAllPhones()
     {
-        $this->client->request('GET', '/api/phone');
+        $this->client->request('GET', '/api/phones');
 
         $this->assertEquals(200,  $this->client->getResponse()->getStatusCode());
     }
 
     public function testShowOnePhone()
     {
-        $this->client->request('POST', '/api/phone',['name'=> 'Iphone XR','price' => 1250,
+        $this->client->request('POST', '/api/phones',['name'=> 'Iphone XR','price' => 1250,
         'color' => 'Red','description' => 'Best Phone']);
 
         $phone = (array)json_decode( $this->client->getResponse()->getContent());
 
-        $this->client->request('GET', '/api/phone/'.$phone['id']);
+        $this->client->request('GET', '/api/phones/'.$phone['id']);
 
         $this->assertEquals(200,  $this->client->getResponse()->getStatusCode());
 
@@ -60,7 +60,7 @@ class PhoneTest extends WebTestCase
 
     public function testInsertOnePhone()
     {
-        $this->client->request('POST', '/api/phone',['name'=> 'Iphone XR','price' => 1250,
+        $this->client->request('POST', '/api/phones',['name'=> 'Iphone XR','price' => 1250,
         'color' => 'Red','description' => 'Best Phone']);
 
         $this->assertEquals(200,  $this->client->getResponse()->getStatusCode());
