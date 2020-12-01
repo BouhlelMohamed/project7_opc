@@ -83,4 +83,15 @@ class CustomerTest extends WebTestCase
         $this->assertSame($userId,$response[0]['id']);
     }
 
+    public function testGetErrorWhenCustomerIdIsNotExist()
+    {
+        $this->client->request('GET', "/api/customers/285221505201505050/users");
+
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+        $response = (array)json_decode($this->client->getResponse()->getContent());
+
+        $this->assertCount(2,$response);
+    }
+
 }

@@ -42,7 +42,6 @@ class Customer implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("customer:read")
      */
     private $password;
 
