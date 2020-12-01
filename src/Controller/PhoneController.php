@@ -26,12 +26,12 @@ class PhoneController extends AbstractController
      */
     public function getAll(PhoneRepository $repo)
     {
-        $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo) {
-            $item->expiresAfter(60);
-            return $repo->findAll();
-        });
+//        $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo) {
+//            $item->expiresAfter(60);
+//            return $repo->findAll();
+//        });
 
-        return $this->json($value,200,[],['groups' => 'phone:read']);
+        return $this->json($repo->findAll(),200,[],['groups' => 'phone:read']);
     }
 
     /**
@@ -39,10 +39,11 @@ class PhoneController extends AbstractController
     */
     public function getOnePhone(PhoneRepository $repo,int $id)
     {
-        $value = $this->cache->get('cache_one_phone', function (ItemInterface $item) use ($repo,$id) {
-            $item->expiresAfter(60);
-            return $repo->findOneById($id);
-        });
+//        $value = $this->cache->get('cache_one_phone', function (ItemInterface $item) use ($repo,$id) {
+//            $item->expiresAfter(60);
+//            return $repo->findOneById($id);
+//        });
+        $value = $repo->findOneById($id);
         if(isset($value)) {
             return $this->json($value,200,[],['groups' => 'phone:read']);
         }
