@@ -175,23 +175,32 @@
     <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="PHPUnit.CustomerTest.testGetErrorWhenCustomerIdIsNotExist">
-    <configuration name="CustomerTest.testGetErrorWhenCustomerIdIsNotExist (1)" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+  <component name="RunManager" selected="PHPUnit.CustomerTest.testGetAllUsersWhoHaveAConnectionWithACustomer">
+    <configuration name="All tests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <CommandLine>
         <PhpTestInterpreterSettings>
           <option name="interpreterName" value="PHP" />
         </PhpTestInterpreterSettings>
       </CommandLine>
-      <TestRunner class="App\Tests\Controller\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="testGetErrorWhenCustomerIdIsNotExist" scope="Class" use_alternative_configuration_file="true" />
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
-    <configuration name="CustomerTest.testGetErrorWhenCustomerIdIsNotExist (2)" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+    <configuration name="CustomerTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
           <option name="interpreterName" value="PHP" />
         </PhpTestInterpreterSettings>
       </CommandLine>
-      <TestRunner class="App\Tests\Controller\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="testGetErrorWhenCustomerIdIsNotExist" scope="Method" use_alternative_configuration_file="true" />
+      <TestRunner class="App\Tests\Controller\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="test" scope="Method" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="CustomerTest.testGetAllUsersWhoHaveAConnectionWithACustomer" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="App\Tests\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="testGetAllUsersWhoHaveAConnectionWithACustomer" scope="Method" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
     <configuration name="CustomerTest.testGetErrorWhenCustomerIdIsNotExist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -200,25 +209,7 @@
           <option name="interpreterName" value="PHP" />
         </PhpTestInterpreterSettings>
       </CommandLine>
-      <TestRunner class="App\Tests\Controller\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="testGetErrorWhenCustomerIdIsNotExist" use_alternative_configuration_file="true" />
-      <method v="2" />
-    </configuration>
-    <configuration name="CustomerTest.testGetOneUserWhoHaveAConnectionWithACustomer" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <CommandLine>
-        <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP" />
-        </PhpTestInterpreterSettings>
-      </CommandLine>
-      <TestRunner class="App\Tests\Controller\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="testGetOneUserWhoHaveAConnectionWithACustomer" scope="Method" use_alternative_configuration_file="true" />
-      <method v="2" />
-    </configuration>
-    <configuration name="PhoneTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <CommandLine>
-        <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP" />
-        </PhpTestInterpreterSettings>
-      </CommandLine>
-      <TestRunner class="App\Tests\Controller\PhoneTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/PhoneTest.php" scope="Class" use_alternative_configuration_file="true" />
+      <TestRunner class="App\Tests\Controller\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="testGetErrorWhenCustomerIdIsNotExist" scope="Method" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -230,22 +221,17 @@
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
-    <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <CommandLine>
-        <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP" />
-        </PhpTestInterpreterSettings>
-      </CommandLine>
-      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" scope="XML" use_alternative_configuration_file="true" />
-      <method v="2" />
-    </configuration>
+    <list>
+      <item itemvalue="PHPUnit.All tests" />
+      <item itemvalue="PHPUnit.CustomerTest" />
+      <item itemvalue="PHPUnit.CustomerTest.testGetErrorWhenCustomerIdIsNotExist" />
+      <item itemvalue="PHPUnit.CustomerTest.testGetAllUsersWhoHaveAConnectionWithACustomer" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.CustomerTest.testGetAllUsersWhoHaveAConnectionWithACustomer" />
         <item itemvalue="PHPUnit.CustomerTest.testGetErrorWhenCustomerIdIsNotExist" />
-        <item itemvalue="PHPUnit.CustomerTest.testGetOneUserWhoHaveAConnectionWithACustomer" />
-        <item itemvalue="PHPUnit.CustomerTest.testGetErrorWhenCustomerIdIsNotExist (2)" />
-        <item itemvalue="PHPUnit.CustomerTest.testGetErrorWhenCustomerIdIsNotExist (1)" />
-        <item itemvalue="PHPUnit.PhoneTest" />
+        <item itemvalue="PHPUnit.CustomerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -270,9 +256,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="380" y="85" key="#Test_Frameworks/0.0.1600.860@0.0.1600.860" timestamp="1606471011883" />
-    <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606471531129">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="1905" y="-80" width="1092" height="834" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606854672434">
+      <screen x="1600" y="-183" width="1920" height="1040" />
     </state>
+    <state x="1905" y="-80" width="1092" height="834" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606854672434" />
     <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1606471531129" />
     <state x="1692" y="-91" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1606680654019">
       <screen x="1600" y="-183" width="1920" height="1040" />
@@ -290,29 +277,29 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="580" y="171" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1606476067251" />
-    <state width="1877" height="335" key="GridCell.Tab.0.bottom" timestamp="1606854308228">
+    <state width="1877" height="335" key="GridCell.Tab.0.bottom" timestamp="1606854701828">
       <screen x="1600" y="-183" width="1920" height="1040" />
     </state>
     <state width="1557" height="211" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
-    <state width="1877" height="335" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606854308228" />
+    <state width="1877" height="335" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606854701828" />
     <state width="1557" height="24" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606476069168" />
-    <state width="1877" height="335" key="GridCell.Tab.0.center" timestamp="1606854308228">
+    <state width="1877" height="335" key="GridCell.Tab.0.center" timestamp="1606854701827">
       <screen x="1600" y="-183" width="1920" height="1040" />
     </state>
     <state width="1557" height="211" key="GridCell.Tab.0.center/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
-    <state width="1877" height="335" key="GridCell.Tab.0.center/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606854308228" />
+    <state width="1877" height="335" key="GridCell.Tab.0.center/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606854701827" />
     <state width="1557" height="24" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1606476069168" />
-    <state width="1877" height="335" key="GridCell.Tab.0.left" timestamp="1606854308228">
+    <state width="1877" height="335" key="GridCell.Tab.0.left" timestamp="1606854701827">
       <screen x="1600" y="-183" width="1920" height="1040" />
     </state>
     <state width="1557" height="211" key="GridCell.Tab.0.left/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
-    <state width="1877" height="335" key="GridCell.Tab.0.left/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606854308228" />
+    <state width="1877" height="335" key="GridCell.Tab.0.left/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606854701827" />
     <state width="1557" height="24" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1606476069168" />
-    <state width="1877" height="335" key="GridCell.Tab.0.right" timestamp="1606854308228">
+    <state width="1877" height="335" key="GridCell.Tab.0.right" timestamp="1606854701828">
       <screen x="1600" y="-183" width="1920" height="1040" />
     </state>
     <state width="1557" height="211" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
-    <state width="1877" height="335" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606854308228" />
+    <state width="1877" height="335" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606854701828" />
     <state width="1557" height="24" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1606476069168" />
     <state x="301" y="75" key="SettingsEditor" timestamp="1606471418558">
       <screen x="0" y="0" width="1600" height="860" />
