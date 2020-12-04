@@ -12,7 +12,7 @@ class ExceptionSubscriber implements EventSubscriberInterface
     {
         $exception = $event->getThrowable();
         $data = [
-            'message' => 'Oups ... Une petite erreur! Merci de verifier votre route ou de contacter notre service client au service@contact.com'
+            'message' => $exception->getMessage()
         ];
 
         $response = new JsonResponse($data);
