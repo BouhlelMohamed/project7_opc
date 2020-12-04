@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Phone;
 use App\Repository\PhoneRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,12 +27,12 @@ class PhoneController extends AbstractController
      */
     public function getAll(PhoneRepository $repo)
     {
-//        $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo) {
-//            $item->expiresAfter(60);
-//            return $repo->findAll();
-//        });
+        $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo) {
+            $item->expiresAfter(60);
+            return $repo->findAll();
+        });
 
-        return $this->json($repo->findAll(),200,[],['groups' => 'phone:read']);
+        return $this->json($value,200,[],['groups' => 'phone:read']);
     }
 
     /**
@@ -39,15 +40,14 @@ class PhoneController extends AbstractController
     */
     public function getOnePhone(PhoneRepository $repo,int $id)
     {
-//        $value = $this->cache->get('cache_one_phone', function (ItemInterface $item) use ($repo,$id) {
-//            $item->expiresAfter(60);
-//            return $repo->findOneById($id);
-//        });
-        $value = $repo->findOneById($id);
+        $value = $this->cache->get('cache_one_phone', function (ItemInterface $item) use ($repo,$id) {
+            $item->expiresAfter(60);
+            return $repo->findOneById($id);
+        });
         if(isset($value)) {
             return $this->json($value,200,[],['groups' => 'phone:read']);
         }
-        return new Response("the phone with id $id does not exist",422);
+        return new JsonResponse("the phone with id $id does not exist",422);
     }
 
     /**
@@ -65,6 +65,9 @@ class PhoneController extends AbstractController
         $em->persist($phone);
 
         $em->flush();
+
+        $this->cache->delete('cache_one_phone');
+        $this->cache->delete('cache_all_phone');
 
         return $this->json($phone,200,[],['groups' => 'phone:read']);
     }

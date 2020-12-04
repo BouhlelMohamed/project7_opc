@@ -12,7 +12,7 @@ security:
 
     firewalls:
             main:
-                    security: false
+                    security: true
                     pattern: ^/api
                     guard:
                         authenticators:

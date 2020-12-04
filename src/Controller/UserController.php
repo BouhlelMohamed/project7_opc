@@ -9,10 +9,16 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\CacheInterface;
 
 
 class UserController extends AbstractController
 {
+    public function __construct(CacheInterface $cache)
+    {
+        $this->cache = $cache;
+    }
+
     /**
      * @Route("/api/users/customers/{id}", name="add_user_for_customers",methods={"POST"})
      */
@@ -28,6 +34,9 @@ class UserController extends AbstractController
 
         $em->flush();
 
+        $this->cache->delete('cache_all_users_with_a_customer');
+        $this->cache->delete('cache_user_with_a_customer');
+
         return $this->json($user,200,[],['groups' => ['customer:read']]);
     }
 
@@ -36,13 +45,13 @@ class UserController extends AbstractController
      */
     public function deleteUser(int $userId,int $customerId,UserRepository $userRepo,CustomerRepository $customerRepo,EntityManagerInterface $em)
     {
-        $customerId = $customerRepo->findOneById($customerId);
-
         $user = $userRepo->findOneById($userId);
 
-        if($user->getCustomer()->getId() === $customerId->getId()){
+        if($user->getCustomer()->getId() === $customerRepo->findOneById($customerId)->getId()){
             $em->remove($user);
-            $em->flush();    
+            $em->flush();
+            $this->cache->delete('cache_all_users_with_a_customer');
+            $this->cache->delete('cache_user_with_a_customer');
             return $this->json('User '.$user->getUsername().' is deleted',200);
         }
         return $this->json('Unauthorized',403);
