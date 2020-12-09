@@ -4,10 +4,15 @@ namespace App\Entity;
 
 use App\Repository\PhoneRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
+ * @UniqueEntity("name")
+ * )
  */
 class Phone
 {
@@ -21,12 +26,25 @@ class Phone
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="The field must not be empty")
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 25
+     * )
      * @Groups("phone:read")
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank(message="The field must not be empty")
+     * @Assert\Length(
+     *     max = 1
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[0-9]+(\.[0-9]{1,2})?$/",
+     *     match="true"
+     * )
      * @Groups("phone:read")
      */
     private $price;
@@ -39,6 +57,10 @@ class Phone
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 255
+     * )
      * @Groups("phone:read")
      */
     private $description;

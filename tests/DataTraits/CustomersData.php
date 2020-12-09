@@ -12,7 +12,6 @@ trait CustomersData {
         for($i = 0; $i < $quantity; $i++)
         {
             $customer = new Customer();
-            $customer->setName('test');
             $customer->setEmail('email@gmail.com');
             $customer->setPassword('password');
     
