@@ -6,10 +6,12 @@ use App\Entity\User;
 use App\Repository\CustomerRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Nelmio\ApiDocBundle\Annotation\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\CacheInterface;
+use OpenApi\Annotations as OA;
 
 
 class UserController extends AbstractController
@@ -21,6 +23,36 @@ class UserController extends AbstractController
 
     /**
      * @Route("/api/users/customers/{id}", name="add_user_for_customers",methods={"POST"})
+     * @OA\Parameter(
+     *   name="Phone",
+     *   description="Add user",
+     *   in="query",
+     *   required=true,
+     *   @OA\Schema(
+     *     type="object",
+     *     title="User field",
+     *     @OA\Property(property="username", type="string"),
+     *     @OA\Property(property="age", type="integer"),
+     *     )
+     * )
+     * @OA\Response(
+     *      response=200,
+     *      description="Success",
+     * )
+     * @OA\Response(
+     *     response=400,
+     *     description="BAD REQUEST"
+     * )
+     * @OA\Response(
+     *     response=401,
+     *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Response(
+     *     response=403,
+     *     description="ACCESS DENIED"
+     * )
+     * @OA\Tag(name="Users")
+     * @Security(name="Bearer")
      */
     public function addANewUserLinkedToACustomer(Request $request,EntityManagerInterface $em,int $id,CustomerRepository $customerRepo)
     {
@@ -42,6 +74,24 @@ class UserController extends AbstractController
 
     /**
      * @Route("/api/users/{userId}/customers/{customerId}", name="delete_user",methods={"DELETE"})
+     * @OA\Response(
+     *      response=200,
+     *      description="Success",
+     * )
+     * @OA\Response(
+     *     response=400,
+     *     description="BAD REQUEST"
+     * )
+     * @OA\Response(
+     *     response=401,
+     *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Response(
+     *     response=403,
+     *     description="ACCESS DENIED"
+     * )
+     * @OA\Tag(name="Users")
+     * @Security(name="Bearer")
      */
     public function deleteUser(int $userId,int $customerId,UserRepository $userRepo,CustomerRepository $customerRepo,EntityManagerInterface $em)
     {
