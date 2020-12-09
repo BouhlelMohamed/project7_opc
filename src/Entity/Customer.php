@@ -32,6 +32,7 @@ class Customer implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="The field must not be empty")
+     * @Assert\Email()
      * @Groups("customer:read")
      */
     private $email;

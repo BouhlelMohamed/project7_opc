@@ -39,7 +39,7 @@ class CustomerController extends AbstractController
     public function getAllUsersWhoHaveAConnectionWithACustomer(CustomerRepository $customerRepo,int $id)
     {
         $value = $this->cache->get('cache_all_users_with_a_customer', function (ItemInterface $item) use ($customerRepo,$id) {
-            $item->expiresAfter(60);
+            $item->expiresAfter(10);
             return $customerRepo->findOneById($id)->getUsers()->toArray();
         });
         return $this->json($value,200,[],['groups' => ['customer:read']]);
@@ -63,7 +63,7 @@ class CustomerController extends AbstractController
     {
 
         $value = $this->cache->get('cache_user_with_a_customer', function (ItemInterface $item) use ($userRepo,$userId) {
-            $item->expiresAfter(60);
+            $item->expiresAfter(10);
             return $userRepo->findOneById($userId);
         });
 

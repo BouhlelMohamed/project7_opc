@@ -54,7 +54,7 @@ class PhoneController extends AbstractController
     public function getAll(PhoneRepository $repo)
     {
         $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo) {
-            $item->expiresAfter(60);
+            $item->expiresAfter(10);
             return $repo->findAll();
         });
 
@@ -85,7 +85,7 @@ class PhoneController extends AbstractController
     public function getOnePhone(PhoneRepository $repo,int $id)
     {
         $value = $this->cache->get('cache_one_phone', function (ItemInterface $item) use ($repo,$id) {
-            $item->expiresAfter(60);
+            $item->expiresAfter(10);
             return $repo->findOneById($id);
         });
         if(isset($value)) {
