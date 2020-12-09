@@ -1,15 +1,25 @@
 nelmio_api_doc:
     documentation:
         info:
-            title: My App
-            description: This is an awesome app!
-            version: 1.0.0
-
+            title: BileMo
+        tags:
+            - name: "Authentication"
+            - name: "Customers"
+            - name: "Phones"
+            - name: "Users"
+        components:
+            securitySchemes:
+                Bearer:
+                    type: http
+                    scheme: bearer
+                    bearerFormat: JWT
+        security:
+            - Bearer: []
         paths:
             /auth/login:
                 post:
                     tags:
-                        - Login
+                        - Authentication
                     description: Login into the api.
                     parameters:
                         - name: email
@@ -24,7 +34,7 @@ nelmio_api_doc:
             /auth/register:
                 post:
                     tags:
-                        - Register
+                        - Authentication
                     description: Register into the api.
                     parameters:
                         - name: email
@@ -37,6 +47,4 @@ nelmio_api_doc:
                         '200':
                             description: Login successful
 
-    areas: # to filter documented areas
-        path_patterns:
-            - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
+
