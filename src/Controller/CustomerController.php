@@ -11,6 +11,11 @@ use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use OpenApi\Annotations as OA;
 
+/**
+ * Class CustomerController
+ * @package App\Controller
+ * @Route("/api")
+ */
 class CustomerController extends AbstractController
 {
     public function __construct(CacheInterface $cache)
@@ -19,7 +24,7 @@ class CustomerController extends AbstractController
     }
 
     /**
-     * @Route("/api/customers/{id}/users", name="customers_users",methods={"GET"})
+     * @Route("/customers/{id}/users", name="customers_users",methods={"GET"})
      * @OA\Response(
      *     response=200,
      *     description="Success",
@@ -41,7 +46,7 @@ class CustomerController extends AbstractController
     }
 
     /**
-     * @Route("/api/customers/{id}/users/{userId}", name="customer_one_user",methods={"GET"})
+     * @Route("/customers/{id}/users/{userId}", name="customer_one_user",methods={"GET"})
      * @OA\Response(
      *     response=200,
      *     description="Success",

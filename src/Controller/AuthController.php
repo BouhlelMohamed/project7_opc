@@ -10,11 +10,16 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * Class AuthController
+ * @package App\Controller
+ * @Route("/auth")
+ */
 class AuthController extends AbstractController
 {
 
     /**
-     * @Route("/auth/register", name="register", methods={"POST"})
+     * @Route("/register", name="register", methods={"POST"})
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder)
     {
@@ -32,7 +37,7 @@ class AuthController extends AbstractController
     }
 
     /**
-     * @Route("/auth/login", name="login", methods={"POST"})
+     * @Route("/login", name="login", methods={"POST"})
      */
     public function login(Request $request, CustomerRepository $customerRepo, UserPasswordEncoderInterface $encoder)
     {

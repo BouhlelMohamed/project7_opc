@@ -13,7 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 use OpenApi\Annotations as OA;
 
-
+/**
+ * Class UserController
+ * @package App\Controller
+ * @Route("/api")
+ */
 class UserController extends AbstractController
 {
     public function __construct(CacheInterface $cache)
@@ -22,7 +26,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/api/users/customers/{id}", name="add_user_for_customers",methods={"POST"})
+     * @Route("/users/customers/{id}", name="add_user_for_customers",methods={"POST"})
      * @OA\Parameter(
      *   name="Phone",
      *   description="Add user",
@@ -73,7 +77,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/api/users/{userId}/customers/{customerId}", name="delete_user",methods={"DELETE"})
+     * @Route("/users/{userId}/customers/{customerId}", name="delete_user",methods={"DELETE"})
      * @OA\Response(
      *      response=200,
      *      description="Success",

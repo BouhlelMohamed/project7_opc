@@ -16,6 +16,11 @@ use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use OpenApi\Annotations as OA;
 
+/**
+ * Class PhoneController
+ * @package App\Controller
+ * @Route("/api")
+ */
 class PhoneController extends AbstractController
 {
 
@@ -25,7 +30,7 @@ class PhoneController extends AbstractController
     }
 
     /**
-     * @Route("/api/phones", name="all_phones",methods={"GET"})
+     * @Route("/phones", name="all_phones",methods={"GET"})
      * @OA\Response(
      *      response=200,
      *      description="Success",
@@ -57,7 +62,7 @@ class PhoneController extends AbstractController
     }
 
     /**
-    * @Route("/api/phones/{id}", name="onePhone",methods={"GET"})
+    * @Route("/phones/{id}", name="onePhone",methods={"GET"})
      * @OA\Response(
      *      response=200,
      *      description="Success",
@@ -90,7 +95,7 @@ class PhoneController extends AbstractController
     }
 
     /**
-     * @Route("/api/phones", name="insert_phone",methods={"POST"})
+     * @Route("/phones", name="insert_phone",methods={"POST"})
      * @OA\Parameter(
      *   name="Phone",
      *   description="Fields to provide to create a phone",

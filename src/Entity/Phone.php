@@ -26,7 +26,7 @@ class Phone
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="The field must not be empty")
      * @Assert\Length(
      *     min = 3,
      *     max = 25
@@ -37,9 +37,9 @@ class Phone
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="The field must not be empty")
      * @Assert\Length(
-     *     max = 65
+     *     max = 1
      * )
      * @Assert\Regex(
      *     pattern="/^[0-9]+(\.[0-9]{1,2})?$/",
