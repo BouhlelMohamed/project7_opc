@@ -4,6 +4,39 @@ nelmio_api_doc:
             title: My App
             description: This is an awesome app!
             version: 1.0.0
+
+        paths:
+            /auth/login:
+                post:
+                    tags:
+                        - Login
+                    description: Login into the api.
+                    parameters:
+                        - name: email
+                          in: query
+                          required: true
+                        - name: password
+                          in: query
+                          required: true
+                    responses:
+                        '200':
+                            description: Login successful
+            /auth/register:
+                post:
+                    tags:
+                        - Register
+                    description: Register into the api.
+                    parameters:
+                        - name: email
+                          in: query
+                          required: true
+                        - name: password
+                          in: query
+                          required: true
+                    responses:
+                        '200':
+                            description: Login successful
+
     areas: # to filter documented areas
         path_patterns:
             - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
