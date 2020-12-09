@@ -39,7 +39,7 @@ class UserTest extends WebTestCase
 
         $this->user = $this->addUsers($this->entityManager,$this->customer);
 
-        $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin", ['email' => 'admin@admin.com', 'password' => 'admin']);
+        $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin");
 
         $customerRepository = static::$container->get(CustomerRepository::class);
 

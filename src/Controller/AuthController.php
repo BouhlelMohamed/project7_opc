@@ -51,7 +51,7 @@ class AuthController extends AbstractController
         }
         $payload = [
             "customer" => $customer->getUsername(),
-            "exp"  => (new \DateTime())->modify("+50 day")->getTimestamp(),
+            "exp"  => (new \DateTime())->modify("+1 day")->getTimestamp(),
         ];
 
 
