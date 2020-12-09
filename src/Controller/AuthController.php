@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Customer;
 use App\Repository\CustomerRepository;
 use \Firebase\JWT\JWT;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class AuthController
@@ -21,13 +23,21 @@ class AuthController extends AbstractController
     /**
      * @Route("/register", name="register", methods={"POST"})
      */
-    public function register(Request $request, UserPasswordEncoderInterface $encoder)
+    public function register(Request $request, UserPasswordEncoderInterface $encoder,ValidatorInterface $validator)
     {
         $password = $request->get('password');
         $email = $request->get('email');
         $customer = new Customer();
         $customer->setPassword($encoder->encodePassword($customer, $password));
         $customer->setEmail($email);
+        $errors = $validator->validate($customer);
+
+        if (count($errors) > 0) {
+            foreach ($errors as $violation) {
+                $messages[$violation->getPropertyPath()][] = $violation->getMessage();
+            }
+            return new JsonResponse($messages);
+        }
         $em = $this->getDoctrine()->getManager();
         $em->persist($customer);
         $em->flush();
