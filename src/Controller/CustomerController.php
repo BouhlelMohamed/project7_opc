@@ -4,10 +4,12 @@ namespace App\Controller;
 
 use App\Repository\CustomerRepository;
 use App\Repository\UserRepository;
+use Nelmio\ApiDocBundle\Annotation\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
+use OpenApi\Annotations as OA;
 
 class CustomerController extends AbstractController
 {
@@ -18,6 +20,16 @@ class CustomerController extends AbstractController
 
     /**
      * @Route("/api/customers/{id}/users", name="customers_users",methods={"GET"})
+     * @OA\Response(
+     *     response=200,
+     *     description="Success",
+     * )
+     * @OA\Response(
+     *     response=401,
+     *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Tag(name="Customers")
+     * @Security(name="Bearer")
      */
     public function getAllUsersWhoHaveAConnectionWithACustomer(CustomerRepository $customerRepo,int $id)
     {
@@ -30,6 +42,16 @@ class CustomerController extends AbstractController
 
     /**
      * @Route("/api/customers/{id}/users/{userId}", name="customer_one_user",methods={"GET"})
+     * @OA\Response(
+     *     response=200,
+     *     description="Success",
+     * )
+     * @OA\Response(
+     *     response=401,
+     *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Tag(name="Customers")
+     * @Security(name="Bearer")
      */
     public function getOneUserWhoHaveAConnectionWithACustomer(
     UserRepository $userRepo,int $id,int $userId)

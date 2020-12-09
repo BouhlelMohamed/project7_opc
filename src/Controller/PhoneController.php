@@ -42,7 +42,7 @@ class PhoneController extends AbstractController
      *     response=403,
      *     description="ACCESS DENIED"
      * )
-     * @OA\Tag(name="Phone")
+     * @OA\Tag(name="Phones")
      * @Security(name="Bearer")
      *
      */
@@ -74,7 +74,7 @@ class PhoneController extends AbstractController
      *     response=403,
      *     description="ACCESS DENIED"
      * )
-     * @OA\Tag(name="Phone")
+     * @OA\Tag(name="Phones")
      * @Security(name="Bearer")
     */
     public function getOnePhone(PhoneRepository $repo,int $id)
@@ -121,7 +121,7 @@ class PhoneController extends AbstractController
      *     response=403,
      *     description="ACCESS DENIED"
      * )
-     * @OA\Tag(name="Phone")
+     * @OA\Tag(name="Phones")
      * @Security(name="Bearer")
     */
     public function insertOnePhone(Request $request,EntityManagerInterface $em)
