@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use OpenApi\Annotations as OA;
@@ -129,7 +130,7 @@ class PhoneController extends AbstractController
      * @OA\Tag(name="Phones")
      * @Security(name="Bearer")
     */
-    public function insertOnePhone(Request $request,EntityManagerInterface $em)
+    public function insertOnePhone(Request $request,EntityManagerInterface $em,ValidatorInterface $validator)
     {
         $phone = new Phone;
         $phone->setName($request->get('name'));
@@ -137,7 +138,14 @@ class PhoneController extends AbstractController
         $phone->setColor($request->get('color'));
         $phone->setDescription($request->get('description'));
         $phone->setCreatedAt(new \DateTime());
+        $errors = $validator->validate($phone);
 
+        if (count($errors) > 0) {
+            foreach ($errors as $violation) {
+                $messages[$violation->getPropertyPath()][] = $violation->getMessage();
+            }
+            return new JsonResponse($messages);
+        }
         $em->persist($phone);
 
         $em->flush();

@@ -37,14 +37,6 @@ class Phone
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank(message="The field must not be empty")
-     * @Assert\Length(
-     *     max = 1
-     * )
-     * @Assert\Regex(
-     *     pattern="/^[0-9]+(\.[0-9]{1,2})?$/",
-     *     match="true"
-     * )
      * @Groups("phone:read")
      */
     private $price;
