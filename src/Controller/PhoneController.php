@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Phone;
 use App\Repository\PhoneRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Nelmio\ApiDocBundle\Annotation\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
+use OpenApi\Annotations as OA;
 
 class PhoneController extends AbstractController
 {
@@ -51,7 +53,27 @@ class PhoneController extends AbstractController
     }
 
     /**
-    * @Route("/api/phones", name="insert_phone",methods={"POST"})
+     * @Route("/api/phones", name="insert_phone",methods={"POST"})
+     * @OA\Parameter(
+     *   name="Phone",
+     *   description="Fields to provide to create a mobile",
+     *   in="query",
+     *   required=true,
+     *   @OA\Schema(
+     *     type="object",
+     *     title="Phone field",
+     *     @OA\Property(property="name", type="string"),
+     *     @OA\Property(property="price", type="integer"),
+     *     @OA\Property(property="color", type="string"),
+     *     @OA\Property(property="description", type="string")
+     *     )
+     * )
+     * @OA\Response(
+     *      response=201,
+     *      description="Success",
+     * )
+     * @OA\Tag(name="Phone")
+     * @Security(name="Bearer")
     */
     public function insertOnePhone(Request $request,EntityManagerInterface $em)
     {
