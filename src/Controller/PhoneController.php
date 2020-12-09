@@ -26,6 +26,25 @@ class PhoneController extends AbstractController
 
     /**
      * @Route("/api/phones", name="all_phones",methods={"GET"})
+     * @OA\Response(
+     *      response=200,
+     *      description="Success",
+     * )
+     * @OA\Response(
+     *     response=400,
+     *     description="BAD REQUEST"
+     * )
+     * @OA\Response(
+     *     response=401,
+     *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Response(
+     *     response=403,
+     *     description="ACCESS DENIED"
+     * )
+     * @OA\Tag(name="Phone")
+     * @Security(name="Bearer")
+     *
      */
     public function getAll(PhoneRepository $repo)
     {
@@ -39,6 +58,24 @@ class PhoneController extends AbstractController
 
     /**
     * @Route("/api/phones/{id}", name="onePhone",methods={"GET"})
+     * @OA\Response(
+     *      response=200,
+     *      description="Success",
+     * )
+     * @OA\Response(
+     *     response=400,
+     *     description="BAD REQUEST"
+     * )
+     * @OA\Response(
+     *     response=401,
+     *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Response(
+     *     response=403,
+     *     description="ACCESS DENIED"
+     * )
+     * @OA\Tag(name="Phone")
+     * @Security(name="Bearer")
     */
     public function getOnePhone(PhoneRepository $repo,int $id)
     {
@@ -56,7 +93,7 @@ class PhoneController extends AbstractController
      * @Route("/api/phones", name="insert_phone",methods={"POST"})
      * @OA\Parameter(
      *   name="Phone",
-     *   description="Fields to provide to create a mobile",
+     *   description="Fields to provide to create a phone",
      *   in="query",
      *   required=true,
      *   @OA\Schema(
@@ -71,6 +108,18 @@ class PhoneController extends AbstractController
      * @OA\Response(
      *      response=201,
      *      description="Success",
+     * )
+     * @OA\Response(
+     *     response=400,
+     *     description="BAD REQUEST"
+     * )
+     * @OA\Response(
+     *     response=401,
+     *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Response(
+     *     response=403,
+     *     description="ACCESS DENIED"
      * )
      * @OA\Tag(name="Phone")
      * @Security(name="Bearer")
