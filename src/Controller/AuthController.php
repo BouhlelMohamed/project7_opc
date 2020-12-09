@@ -10,11 +10,16 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * Class AuthController
+ * @package App\Controller
+ * @Route("/auth")
+ */
 class AuthController extends AbstractController
 {
 
     /**
-     * @Route("/auth/register", name="register", methods={"POST"})
+     * @Route("/register", name="register", methods={"POST"})
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder)
     {
@@ -31,30 +36,30 @@ class AuthController extends AbstractController
         ]);
     }
 
-        /**
-         * @Route("/auth/login", name="login", methods={"POST"})
-         */
-        public function login(Request $request, CustomerRepository $customerRepo, UserPasswordEncoderInterface $encoder)
-        {
-            $customer = $customerRepo->findOneBy([
-                    'email'=>$request->get('email'),
-            ]);
-            if (!$customer || !$encoder->isPasswordValid($customer, $request->get('password'))) {
-                    return $this->json([
-                        'message' => 'email or password is wrong.',
-                    ]);
-            }
-            $payload = [
-                "customer" => $customer->getUsername(),
-                "exp"  => (new \DateTime())->modify("+50 day")->getTimestamp(),
-            ];
-
-
-            $jwt = JWT::encode($payload, $this->getParameter('jwt_secret'), 'HS256');
-            return $this->json([
-                    'message' => 'success!',
-                    'token' => sprintf('Bearer %s', $jwt),
+    /**
+     * @Route("/login", name="login", methods={"POST"})
+     */
+    public function login(Request $request, CustomerRepository $customerRepo, UserPasswordEncoderInterface $encoder)
+    {
+        $customer = $customerRepo->findOneBy([
+                'email'=>$request->get('email'),
+        ]);
+        if (!$customer || !$encoder->isPasswordValid($customer, $request->get('password'))) {
+                return $this->json([
+                    'message' => 'email or password is wrong.',
                 ]);
         }
+        $payload = [
+            "customer" => $customer->getUsername(),
+            "exp"  => (new \DateTime())->modify("+50 day")->getTimestamp(),
+        ];
+
+
+        $jwt = JWT::encode($payload, $this->getParameter('jwt_secret'), 'HS256');
+        return $this->json([
+                'message' => 'success!',
+                'token' => sprintf('Bearer %s', $jwt),
+            ]);
+    }
 
 }

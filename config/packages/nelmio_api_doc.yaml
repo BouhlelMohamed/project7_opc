@@ -1,0 +1,52 @@
+nelmio_api_doc:
+    areas:
+        path_patterns: # an array of regexps
+            - ^/api(?!/doc$)
+    documentation:
+        info:
+            title: BileMo
+        tags:
+            - name: "Authentication"
+            - name: "Customers"
+            - name: "Phones"
+            - name: "Users"
+        components:
+            securitySchemes:
+                Bearer:
+                    type: http
+                    scheme: bearer
+                    bearerFormat: JWT
+        security:
+            - Bearer: []
+        paths:
+            /auth/login:
+                post:
+                    tags:
+                        - Authentication
+                    description: Login into the api.
+                    parameters:
+                        - name: email
+                          in: query
+                          required: true
+                        - name: password
+                          in: query
+                          required: true
+                    responses:
+                        '200':
+                            description: Login successful
+            /auth/register:
+                post:
+                    tags:
+                        - Authentication
+                    description: Register into the api.
+                    parameters:
+                        - name: email
+                          in: query
+                          required: true
+                        - name: password
+                          in: query
+                          required: true
+                    responses:
+                        '200':
+                            description: Login successful
+

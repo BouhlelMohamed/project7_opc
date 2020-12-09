@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="868b33ff-8323-430f-9278-d45a98bcdd22" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,6 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/react/event-loop" />
@@ -155,6 +159,8 @@
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/vendor/zircote/swagger-php" />
+      <path value="$PROJECT_DIR$/vendor/nelmio/api-doc-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1ks4fi6PGNZ6qceQh5w3zsEK56U" />
@@ -171,35 +177,53 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
+    <property name="settings.editor.selected.configurable" value="Symfony.ProfilerSettingsForm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="PHPUnit.phpunit.xml.dist">
+  <component name="RunManager" selected="PHPUnit.All tests">
+    <configuration name="All tests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
     <configuration name="CustomerTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
           <option name="interpreterName" value="PHP" />
         </PhpTestInterpreterSettings>
       </CommandLine>
-      <TestRunner class="App\Tests\Controller\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" scope="Class" use_alternative_configuration_file="true" />
+      <TestRunner class="App\Tests\Controller\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="test" scope="Method" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
-    <configuration name="CustomerTest.testGetOneUserWhoHaveAConnectionWithACustomer" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+    <configuration name="CustomerTest.testGetAllUsersWhoHaveAConnectionWithACustomer" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
           <option name="interpreterName" value="PHP" />
         </PhpTestInterpreterSettings>
       </CommandLine>
-      <TestRunner class="App\Tests\Controller\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="testGetOneUserWhoHaveAConnectionWithACustomer" scope="Method" use_alternative_configuration_file="true" />
+      <TestRunner class="App\Tests\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="testGetAllUsersWhoHaveAConnectionWithACustomer" scope="Method" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
-    <configuration name="PhoneTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+    <configuration name="CustomerTest.testGetErrorWhenCustomerIdIsNotExist (1)" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
           <option name="interpreterName" value="PHP" />
         </PhpTestInterpreterSettings>
       </CommandLine>
-      <TestRunner class="App\Tests\Controller\PhoneTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/PhoneTest.php" scope="Class" use_alternative_configuration_file="true" />
+      <TestRunner class="App\Tests\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" coverage_engine="PHPDBG" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="testGetErrorWhenCustomerIdIsNotExist" scope="Method" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="CustomerTest.testGetErrorWhenCustomerIdIsNotExist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="App\Tests\Controller\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="testGetErrorWhenCustomerIdIsNotExist" scope="Method" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
     <configuration name="UserTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -208,7 +232,7 @@
           <option name="interpreterName" value="PHP" />
         </PhpTestInterpreterSettings>
       </CommandLine>
-      <TestRunner class="App\Tests\Controller\UserTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/UserTest.php" scope="Class" use_alternative_configuration_file="true" />
+      <TestRunner class="App\Tests\UserTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/UserTest.php" scope="Class" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -220,21 +244,21 @@
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
-    <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <CommandLine>
-        <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP" />
-        </PhpTestInterpreterSettings>
-      </CommandLine>
-      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" scope="XML" use_alternative_configuration_file="true" />
-      <method v="2" />
-    </configuration>
+    <list>
+      <item itemvalue="PHPUnit.All tests" />
+      <item itemvalue="PHPUnit.CustomerTest" />
+      <item itemvalue="PHPUnit.CustomerTest.testGetErrorWhenCustomerIdIsNotExist" />
+      <item itemvalue="PHPUnit.CustomerTest.testGetAllUsersWhoHaveAConnectionWithACustomer" />
+      <item itemvalue="PHPUnit.CustomerTest.testGetErrorWhenCustomerIdIsNotExist (1)" />
+      <item itemvalue="PHPUnit.UserTest" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.PhoneTest" />
-        <item itemvalue="PHPUnit.CustomerTest" />
         <item itemvalue="PHPUnit.UserTest" />
-        <item itemvalue="PHPUnit.CustomerTest.testGetOneUserWhoHaveAConnectionWithACustomer" />
+        <item itemvalue="PHPUnit.CustomerTest.testGetErrorWhenCustomerIdIsNotExist (1)" />
+        <item itemvalue="PHPUnit.CustomerTest.testGetAllUsersWhoHaveAConnectionWithACustomer" />
+        <item itemvalue="PHPUnit.CustomerTest.testGetErrorWhenCustomerIdIsNotExist" />
+        <item itemvalue="PHPUnit.CustomerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -247,7 +271,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606476069907</updated>
       <workItem from="1606476071053" duration="1366000" />
-      <workItem from="1606664017264" duration="10348000" />
+      <workItem from="1606664017264" duration="8773000" />
     </task>
     <servers />
   </component>
@@ -255,71 +279,94 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="2040" y="-82" key="#CLI_Interpreters" timestamp="1606855430893">
+      <screen x="1600" y="-183" width="1920" height="1040" />
+    </state>
+    <state x="2040" y="-82" key="#CLI_Interpreters/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606855430893" />
     <state x="380" y="85" key="#Test_Frameworks" timestamp="1606471011883">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="380" y="85" key="#Test_Frameworks/0.0.1600.860@0.0.1600.860" timestamp="1606471011883" />
-    <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606471531129">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1606471531129" />
-    <state x="1692" y="-91" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1606680654019">
+    <state x="1905" y="-80" width="1092" height="834" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606854672434">
       <screen x="1600" y="-183" width="1920" height="1040" />
     </state>
+    <state x="1905" y="-80" width="1092" height="834" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606854672434" />
+    <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1606471531129" />
+    <state x="1692" y="92" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1607111538597">
+      <screen x="1600" y="0" width="1920" height="1040" />
+    </state>
     <state x="1692" y="-91" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606680654019" />
+    <state x="1692" y="92" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607111538597" />
     <state x="2290" y="84" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606666020679">
       <screen x="1600" y="-183" width="1920" height="1040" />
     </state>
     <state x="2290" y="84" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606666020679" />
-    <state x="2290" y="92" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606682345922">
+    <state x="2290" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607111996683">
+      <screen x="1600" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2290" y="92" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606670964013" />
+    <state x="2290" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607111996683" />
+    <state x="2296" y="24" key="FileChooserDialogImpl" timestamp="1607033099642">
       <screen x="1600" y="-183" width="1920" height="1040" />
     </state>
-    <state x="2290" y="92" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606682345922" />
-    <state x="580" y="171" key="FileChooserDialogImpl" timestamp="1606476067251">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
+    <state x="2296" y="24" key="FileChooserDialogImpl/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607033099642" />
     <state x="580" y="171" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1606476067251" />
-    <state width="1877" height="342" key="GridCell.Tab.0.bottom" timestamp="1606682332387">
-      <screen x="1600" y="-183" width="1920" height="1040" />
-    </state>
-    <state width="1557" height="160" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606661389650" />
-    <state width="1877" height="342" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606682332387" />
-    <state width="1557" height="24" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606476069168" />
-    <state width="1877" height="342" key="GridCell.Tab.0.center" timestamp="1606682332386">
-      <screen x="1600" y="-183" width="1920" height="1040" />
-    </state>
-    <state width="1557" height="160" key="GridCell.Tab.0.center/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606661389649" />
-    <state width="1877" height="342" key="GridCell.Tab.0.center/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606682332386" />
-    <state width="1557" height="24" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1606476069168" />
-    <state width="1877" height="342" key="GridCell.Tab.0.left" timestamp="1606682332386">
-      <screen x="1600" y="-183" width="1920" height="1040" />
-    </state>
-    <state width="1557" height="160" key="GridCell.Tab.0.left/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606661389649" />
-    <state width="1877" height="342" key="GridCell.Tab.0.left/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606682332386" />
-    <state width="1557" height="24" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1606476069168" />
-    <state width="1877" height="342" key="GridCell.Tab.0.right" timestamp="1606682332387">
-      <screen x="1600" y="-183" width="1920" height="1040" />
-    </state>
-    <state width="1557" height="160" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606661389649" />
-    <state width="1877" height="342" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606682332387" />
-    <state width="1557" height="24" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1606476069168" />
-    <state x="2336" y="60" key="NewPhpClassDialog" timestamp="1606682136400">
-      <screen x="1600" y="-183" width="1920" height="1040" />
-    </state>
-    <state x="2336" y="60" key="NewPhpClassDialog/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606682136400" />
-    <state x="301" y="75" key="SettingsEditor" timestamp="1606471418558">
+    <state width="1557" height="303" key="GridCell.Tab.0.bottom" timestamp="1607542077164">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1606471418558" />
-    <state x="2267" y="-64" width="585" height="801" key="find.popup" timestamp="1606666248452">
+    <state width="1557" height="211" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
+    <state width="1877" height="184" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828094" />
+    <state width="1877" height="424" key="GridCell.Tab.0.bottom/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022888" />
+    <state width="1557" height="303" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1607542077164" />
+    <state width="1557" height="303" key="GridCell.Tab.0.center" timestamp="1607542077162">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="211" key="GridCell.Tab.0.center/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
+    <state width="1877" height="184" key="GridCell.Tab.0.center/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828094" />
+    <state width="1877" height="424" key="GridCell.Tab.0.center/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022887" />
+    <state width="1557" height="303" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1607542077162" />
+    <state width="1557" height="303" key="GridCell.Tab.0.left" timestamp="1607542077161">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="211" key="GridCell.Tab.0.left/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
+    <state width="1877" height="184" key="GridCell.Tab.0.left/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828093" />
+    <state width="1877" height="424" key="GridCell.Tab.0.left/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022887" />
+    <state width="1557" height="303" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1607542077161" />
+    <state width="1557" height="303" key="GridCell.Tab.0.right" timestamp="1607542077163">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="211" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
+    <state width="1877" height="184" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828094" />
+    <state width="1877" height="424" key="GridCell.Tab.0.right/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022888" />
+    <state width="1557" height="303" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1607542077163" />
+    <state x="2342" y="60" key="NewPhpClassDialog" timestamp="1607028344438">
       <screen x="1600" y="-183" width="1920" height="1040" />
     </state>
-    <state x="2267" y="-64" width="585" height="801" key="find.popup/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606666248452" />
-    <state x="2156" y="35" width="807" height="820" key="search.everywhere.popup" timestamp="1606681448507">
+    <state x="2342" y="60" key="NewPhpClassDialog/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607028344438" />
+    <state x="301" y="75" key="SettingsEditor" timestamp="1607540125226">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="1961" y="-92" key="SettingsEditor/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606855465894" />
+    <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1607540125225" />
+    <state x="2267" y="119" width="658" height="801" key="find.popup" timestamp="1607109079933">
+      <screen x="1600" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2267" y="-64" width="658" height="801" key="find.popup/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607028445464" />
+    <state x="2267" y="119" width="658" height="801" key="find.popup/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607109079933" />
+    <state x="2201" y="63" width="700" height="530" key="recent.locations.popup" timestamp="1606853853479">
       <screen x="1600" y="-183" width="1920" height="1040" />
     </state>
-    <state x="2156" y="35" width="807" height="820" key="search.everywhere.popup/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606681448507" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1606471396101" />
+    <state x="2201" y="63" width="700" height="530" key="recent.locations.popup/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606853853479" />
+    <state x="456" y="195" key="run.anything.popup" timestamp="1607537171463">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1607537171463" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1607542958099">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="2156" y="35" width="807" height="820" key="search.everywhere.popup/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607066635179" />
+    <state x="2156" y="218" width="807" height="820" key="search.everywhere.popup/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607110502145" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1607542958099" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -332,6 +379,11 @@
             <option name="methodName" value="testShowAllPhones" />
           </properties>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php</url>
+          <line>68</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
