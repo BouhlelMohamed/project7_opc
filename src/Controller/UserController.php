@@ -50,12 +50,11 @@ class UserController extends AbstractController
         });
 
         return new JsonResponse($serializer->serialize($customerRepo->findOneById($id)->getUsers()->toArray(),"json",
-            ["groups" => "getUser"])
+            ["groups" => "getUsers"])
         , JsonResponse::HTTP_OK,
         [],
         true
         );
-//        return $this->json($customerRepo->findOneById($id)->getUsers()->toArray(),200,[],['groups'=>'list']);
     }
 
     /**
@@ -72,18 +71,22 @@ class UserController extends AbstractController
      * @Security(name="Bearer")
      */
     public function getOneUserWhoHaveAConnectionWithACustomer(
-        UserRepository $userRepo,int $id,int $userId)
+        UserRepository $userRepo,int $id,int $userId,SerializerInterface $serializer)
     {
 
-        $value = $this->cache->get('cache_user_with_a_customer', function (ItemInterface $item) use ($userRepo,$userId) {
+        $value = $this->cache->get('cache_user_with_a_customer_'.$userId, function (ItemInterface $item) use ($userRepo,$userId) {
             $item->expiresAfter(10);
             return $userRepo->findOneById($userId);
         });
 
         if($value->getCustomer()->getId() === $id){
-            return $this->json($value,200,[],['groups' => ['customer:read']]);
+            return new JsonResponse($serializer->serialize($value,"json",
+                ["groups" => ["show_one_user","getCustomer"]])
+                , JsonResponse::HTTP_OK,
+                [],
+                true
+            );
         }
-        return $this->json("Il n'existe pas de lien direct entre le client et l'utilisateur",403,[],['groups' => ['customer:read']]);
     }
 
     /**
@@ -134,7 +137,7 @@ class UserController extends AbstractController
         $this->cache->delete('cache_all_users_with_a_customer');
         $this->cache->delete('cache_user_with_a_customer');
 
-        return $this->json($user,200,[],['groups' => ['customer:read']]);
+        return $this->json($user,JsonResponse::HTTP_OK,[],["groups" => ["show_one_user","getCustomer"]]);
     }
 
     /**
@@ -169,6 +172,5 @@ class UserController extends AbstractController
             $this->cache->delete('cache_user_with_a_customer');
             return $this->json('User '.$user->getUsername().' is deleted',200);
         }
-        return $this->json('Unauthorized',403);
     }
 }

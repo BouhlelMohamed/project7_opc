@@ -18,24 +18,26 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"show_one_user"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="The field must not be empty")
-     * @Groups({"getUser"})
+     * @Groups({"show_one_user","getUsers"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"getUser"})
+     * @Groups({"show_one_user","getUsers"})
      */
     private $age;
 
     /**
      * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="users", cascade={"persist", "remove" })
+     * @Groups({"show_one_user"})
      */
     private $customer;
 
