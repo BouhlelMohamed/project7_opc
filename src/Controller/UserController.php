@@ -8,10 +8,14 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use OpenApi\Annotations as OA;
+use Symfony\Contracts\Cache\ItemInterface;
 
 /**
  * Class UserController
@@ -23,6 +27,66 @@ class UserController extends AbstractController
     public function __construct(CacheInterface $cache)
     {
         $this->cache = $cache;
+    }
+
+    /**
+     * @Route("/users/customers/{id}", name="customers_users",methods={"GET"},requirements = {"id"="\d+"})
+     * @OA\Response(
+     *     response=200,
+     *     description="Success",
+     * )
+     * @OA\Response(
+     *     response=401,
+     *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Tag(name="Users")
+     * @Security(name="Bearer")
+     */
+    public function getAllUsersWhoHaveAConnectionWithACustomer(CustomerRepository $customerRepo,int $id,SerializerInterface $serializer)
+    {
+        $value = $this->cache->get('cache_all_users_with_a_customer', function (ItemInterface $item) use ($customerRepo,$id) {
+            $item->expiresAfter(10);
+            return $customerRepo->findOneById($id)->getUsers()->toArray();
+        });
+
+        return new JsonResponse($serializer->serialize($customerRepo->findOneById($id)->getUsers()->toArray(),"json",
+            ["groups" => "getUsers"])
+        , JsonResponse::HTTP_OK,
+        [],
+        true
+        );
+    }
+
+    /**
+     * @Route("/users/{userId}/customers/{id}", name="customer_one_user",methods={"GET"})
+     * @OA\Response(
+     *     response=200,
+     *     description="Success",
+     * )
+     * @OA\Response(
+     *     response=401,
+     *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Tag(name="Users")
+     * @Security(name="Bearer")
+     */
+    public function getOneUserWhoHaveAConnectionWithACustomer(
+        UserRepository $userRepo,int $id,int $userId,SerializerInterface $serializer)
+    {
+
+        $value = $this->cache->get('cache_user_with_a_customer_'.$userId, function (ItemInterface $item) use ($userRepo,$userId) {
+            $item->expiresAfter(10);
+            return $userRepo->findOneById($userId);
+        });
+
+        if($value->getCustomer()->getId() === $id){
+            return new JsonResponse($serializer->serialize($value,"json",
+                ["groups" => ["show_one_user"]])
+                , JsonResponse::HTTP_OK,
+                [],
+                true
+            );
+        }
     }
 
     /**
@@ -73,7 +137,7 @@ class UserController extends AbstractController
         $this->cache->delete('cache_all_users_with_a_customer');
         $this->cache->delete('cache_user_with_a_customer');
 
-        return $this->json($user,200,[],['groups' => ['customer:read']]);
+        return $this->json($user,JsonResponse::HTTP_OK,[],["groups" => ["show_one_user","getCustomer"]]);
     }
 
     /**
@@ -108,6 +172,5 @@ class UserController extends AbstractController
             $this->cache->delete('cache_user_with_a_customer');
             return $this->json('User '.$user->getUsername().' is deleted',200);
         }
-        return $this->json('Unauthorized',403);
     }
 }

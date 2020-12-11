@@ -4,10 +4,11 @@ namespace App\Entity;
 
 use App\Repository\PhoneRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
@@ -20,7 +21,7 @@ class Phone
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("phone:read")
+     * @Groups({"show_phone"})
      */
     private $id;
 
@@ -31,27 +32,19 @@ class Phone
      *     min = 3,
      *     max = 25
      * )
-     * @Groups("phone:read")
+     * @Groups({"show_phone", "list_phone"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotBlank(message="The field must not be empty")
-     * @Assert\Length(
-     *     max = 1
-     * )
-     * @Assert\Regex(
-     *     pattern="/^[0-9]+(\.[0-9]{1,2})?$/",
-     *     match="true"
-     * )
-     * @Groups("phone:read")
+     * @Groups({"show_phone", "list_phone"})
      */
     private $price;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("phone:read")
+     * @Groups({"show_phone", "list_phone"})
      */
     private $color;
 
@@ -61,13 +54,13 @@ class Phone
      *     min = 3,
      *     max = 255
      * )
-     * @Groups("phone:read")
+     * @Groups({"show_phone"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups("phone:read")
+     * @Groups({"show_phone"})
      */
     private $createdAt;
 

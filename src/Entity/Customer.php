@@ -6,12 +6,18 @@ use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerRepository::class)
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="I think you're already registered!"
+ * )
  */
 class Customer implements UserInterface
 {
@@ -19,20 +25,20 @@ class Customer implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("customer:read")
+     * @Groups({"getCustomer","show_one_user"})
      */
     private $id;
 
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="customer", cascade={"persist", "remove" })
-     * @Groups("customer:read")
      */
     private $users;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="The field must not be empty")
-     * @Groups("customer:read")
+     * @Assert\Email()
+     * @Groups({"getCustomer"})
      */
     private $email;
 

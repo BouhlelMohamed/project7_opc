@@ -23,7 +23,7 @@ class PhoneTest extends WebTestCase
             Phone::class,
         ]);
 
-        $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin", ['email' => 'admin@admin.com', 'password' => 'admin']);
+        $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin");
 
         $customerRepository = static::$container->get(CustomerRepository::class);
 
