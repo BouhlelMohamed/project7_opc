@@ -25,6 +25,8 @@ use OpenApi\Annotations as OA;
 class PhoneController extends AbstractController
 {
 
+    const EXPIRES_AFTER = 3600;
+
     public function __construct(CacheInterface $cache)
     {
         $this->cache = $cache;
@@ -55,7 +57,7 @@ class PhoneController extends AbstractController
     public function getAll(PhoneRepository $repo)
     {
         $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo) {
-            $item->expiresAfter(10);
+            $item->expiresAfter(self::EXPIRES_AFTER);
             return $repo->findAll();
         });
 
@@ -85,8 +87,8 @@ class PhoneController extends AbstractController
     */
     public function getOnePhone(PhoneRepository $repo,int $id)
     {
-        $value = $this->cache->get('cache_one_phone', function (ItemInterface $item) use ($repo,$id) {
-            $item->expiresAfter(10);
+        $value = $this->cache->get('cache_one_phone_'.$id, function (ItemInterface $item) use ($repo,$id) {
+            $item->expiresAfter(self::EXPIRES_AFTER);
             return $repo->findOneById($id);
         });
         if(isset($value)) {

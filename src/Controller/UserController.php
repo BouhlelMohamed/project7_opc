@@ -24,6 +24,9 @@ use Symfony\Contracts\Cache\ItemInterface;
  */
 class UserController extends AbstractController
 {
+
+    const EXPIRES_AFTER = 3600;
+
     public function __construct(CacheInterface $cache)
     {
         $this->cache = $cache;
@@ -45,11 +48,17 @@ class UserController extends AbstractController
     public function getAllUsersWhoHaveAConnectionWithACustomer(CustomerRepository $customerRepo,int $id,SerializerInterface $serializer)
     {
         $value = $this->cache->get('cache_all_users_with_a_customer', function (ItemInterface $item) use ($customerRepo,$id) {
-            $item->expiresAfter(10);
+            $item->expiresAfter(self::EXPIRES_AFTER);
             return $customerRepo->findOneById($id)->getUsers()->toArray();
         });
 
-        return new JsonResponse($serializer->serialize($customerRepo->findOneById($id)->getUsers()->toArray(),"json",
+//        foreach($value as $key => $item)
+//        {
+//            $item->_links = '/users/' . $item->getId() . '/customers/' . $id;
+//            $value[$key] = $item;
+//        }
+
+        return new JsonResponse($serializer->serialize($value,"json",
             ["groups" => "getUsers"])
         , JsonResponse::HTTP_OK,
         [],
@@ -73,9 +82,8 @@ class UserController extends AbstractController
     public function getOneUserWhoHaveAConnectionWithACustomer(
         UserRepository $userRepo,int $id,int $userId,SerializerInterface $serializer)
     {
-
         $value = $this->cache->get('cache_user_with_a_customer_'.$userId, function (ItemInterface $item) use ($userRepo,$userId) {
-            $item->expiresAfter(10);
+            $item->expiresAfter(self::EXPIRES_AFTER);
             return $userRepo->findOneById($userId);
         });
 
