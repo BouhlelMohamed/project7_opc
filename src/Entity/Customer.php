@@ -25,7 +25,7 @@ class Customer implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"getCustomer"})
+     * @Groups({"getCustomer","show_one_user"})
      */
     private $id;
 

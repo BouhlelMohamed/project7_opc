@@ -81,7 +81,7 @@ class UserController extends AbstractController
 
         if($value->getCustomer()->getId() === $id){
             return new JsonResponse($serializer->serialize($value,"json",
-                ["groups" => ["show_one_user","getCustomer"]])
+                ["groups" => ["show_one_user"]])
                 , JsonResponse::HTTP_OK,
                 [],
                 true
