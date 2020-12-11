@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 use OpenApi\Annotations as OA;
+use Symfony\Contracts\Cache\ItemInterface;
 
 /**
  * Class UserController
@@ -23,6 +24,56 @@ class UserController extends AbstractController
     public function __construct(CacheInterface $cache)
     {
         $this->cache = $cache;
+    }
+
+    /**
+     * @Route("/users/customers/{id}", name="customers_users",methods={"GET"},requirements = {"id"="\d+"})
+     * @OA\Response(
+     *     response=200,
+     *     description="Success",
+     * )
+     * @OA\Response(
+     *     response=401,
+     *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Tag(name="Users")
+     * @Security(name="Bearer")
+     */
+    public function getAllUsersWhoHaveAConnectionWithACustomer(CustomerRepository $customerRepo,int $id)
+    {
+        $value = $this->cache->get('cache_all_users_with_a_customer', function (ItemInterface $item) use ($customerRepo,$id) {
+            $item->expiresAfter(10);
+            return $customerRepo->findOneById($id)->getUsers()->toArray();
+        });
+        return $this->json($customerRepo->findOneById($id)->getUsers()->toArray(),200,[],['groups'=>'user']);
+    }
+
+    /**
+     * @Route("/users/{userId}/customers/{id}", name="customer_one_user",methods={"GET"})
+     * @OA\Response(
+     *     response=200,
+     *     description="Success",
+     * )
+     * @OA\Response(
+     *     response=401,
+     *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Tag(name="Users")
+     * @Security(name="Bearer")
+     */
+    public function getOneUserWhoHaveAConnectionWithACustomer(
+        UserRepository $userRepo,int $id,int $userId)
+    {
+
+        $value = $this->cache->get('cache_user_with_a_customer', function (ItemInterface $item) use ($userRepo,$userId) {
+            $item->expiresAfter(10);
+            return $userRepo->findOneById($userId);
+        });
+
+        if($value->getCustomer()->getId() === $id){
+            return $this->json($value,200,[],['groups' => ['customer:read']]);
+        }
+        return $this->json("Il n'existe pas de lien direct entre le client et l'utilisateur",403,[],['groups' => ['customer:read']]);
     }
 
     /**

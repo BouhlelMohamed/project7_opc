@@ -6,6 +6,7 @@ use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -24,13 +25,12 @@ class Customer implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("customer:read")
      */
     private $id;
 
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="customer", cascade={"persist", "remove" })
-     * @Groups("customer:read")
+     * @Serializer\Expose()
      */
     private $users;
 
@@ -38,7 +38,7 @@ class Customer implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="The field must not be empty")
      * @Assert\Email()
-     * @Groups("customer:read")
+     * @Serializer\Expose()
      */
     private $email;
 

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,20 +18,21 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("customer:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="The field must not be empty")
-     * @Groups("customer:read")
+     * @Serializer\Expose()
+     * @Serializer\Groups({"list", "detail"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups("customer:read")
+     * @Serializer\Expose()
+     * @Serializer\Groups({"list", "detail"})
      */
     private $age;
 
