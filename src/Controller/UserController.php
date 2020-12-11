@@ -172,5 +172,7 @@ class UserController extends AbstractController
             $this->cache->delete('cache_user_with_a_customer');
             return $this->json('User '.$user->getUsername().' is deleted',200);
         }
+
+        return $this->json('User '.$user->getUsername().' is not your user',403);
     }
 }

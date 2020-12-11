@@ -214,15 +214,6 @@
       <TestRunner class="App\Tests\AuthTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/AuthTest.php" method="testRegister" scope="Method" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
-    <configuration name="CustomerTest.testGetAllUsersWhoHaveAConnectionWithACustomer" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <CommandLine>
-        <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP" />
-        </PhpTestInterpreterSettings>
-      </CommandLine>
-      <TestRunner class="App\Tests\CustomerTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/CustomerTest.php" method="testGetAllUsersWhoHaveAConnectionWithACustomer" scope="Method" use_alternative_configuration_file="true" />
-      <method v="2" />
-    </configuration>
     <configuration name="CustomerTest.testGetErrorWhenCustomerIdIsNotExist (1)" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
@@ -241,6 +232,15 @@
       <TestRunner class="App\Tests\UserTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/UserTest.php" scope="Class" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
+    <configuration name="UserTest.testCannotDeleteOneUser" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="App\Tests\UserTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/UserTest.php" method="testCannotDeleteOneUser" scope="Method" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <CommandLine>
         <PhpTestInterpreterSettings>
@@ -252,19 +252,19 @@
     </configuration>
     <list>
       <item itemvalue="PHPUnit.All tests" />
-      <item itemvalue="PHPUnit.CustomerTest.testGetAllUsersWhoHaveAConnectionWithACustomer" />
       <item itemvalue="PHPUnit.CustomerTest.testGetErrorWhenCustomerIdIsNotExist (1)" />
       <item itemvalue="PHPUnit.UserTest" />
       <item itemvalue="PHPUnit.AuthTest.testRegister" />
       <item itemvalue="PHPUnit.AuthTest.testCannotRegister" />
+      <item itemvalue="PHPUnit.UserTest.testCannotDeleteOneUser" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.UserTest.testCannotDeleteOneUser" />
         <item itemvalue="PHPUnit.AuthTest.testCannotRegister" />
         <item itemvalue="PHPUnit.AuthTest.testRegister" />
         <item itemvalue="PHPUnit.UserTest" />
         <item itemvalue="PHPUnit.CustomerTest.testGetErrorWhenCustomerIdIsNotExist (1)" />
-        <item itemvalue="PHPUnit.CustomerTest.testGetAllUsersWhoHaveAConnectionWithACustomer" />
       </list>
     </recent_temporary>
   </component>
@@ -319,34 +319,34 @@
     </state>
     <state x="2296" y="24" key="FileChooserDialogImpl/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607033099642" />
     <state x="580" y="171" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1606476067251" />
-    <state width="1557" height="293" key="GridCell.Tab.0.bottom" timestamp="1607589684087">
+    <state width="1557" height="224" key="GridCell.Tab.0.bottom" timestamp="1607693181440">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="211" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
     <state width="1877" height="184" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828094" />
     <state width="1877" height="424" key="GridCell.Tab.0.bottom/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022888" />
-    <state width="1557" height="293" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1607589684087" />
-    <state width="1557" height="293" key="GridCell.Tab.0.center" timestamp="1607589684087">
+    <state width="1557" height="224" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1607693181440" />
+    <state width="1557" height="224" key="GridCell.Tab.0.center" timestamp="1607693181440">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="211" key="GridCell.Tab.0.center/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
     <state width="1877" height="184" key="GridCell.Tab.0.center/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828094" />
     <state width="1877" height="424" key="GridCell.Tab.0.center/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022887" />
-    <state width="1557" height="293" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1607589684087" />
-    <state width="1557" height="293" key="GridCell.Tab.0.left" timestamp="1607589684087">
+    <state width="1557" height="224" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1607693181440" />
+    <state width="1557" height="224" key="GridCell.Tab.0.left" timestamp="1607693181440">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="211" key="GridCell.Tab.0.left/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
     <state width="1877" height="184" key="GridCell.Tab.0.left/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828093" />
     <state width="1877" height="424" key="GridCell.Tab.0.left/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022887" />
-    <state width="1557" height="293" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1607589684087" />
-    <state width="1557" height="293" key="GridCell.Tab.0.right" timestamp="1607589684087">
+    <state width="1557" height="224" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1607693181440" />
+    <state width="1557" height="224" key="GridCell.Tab.0.right" timestamp="1607693181440">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="211" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
     <state width="1877" height="184" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828094" />
     <state width="1877" height="424" key="GridCell.Tab.0.right/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022888" />
-    <state width="1557" height="293" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1607589684087" />
+    <state width="1557" height="224" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1607693181440" />
     <state x="618" y="201" key="NewPhpClassDialog" timestamp="1607544742983">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
