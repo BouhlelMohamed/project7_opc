@@ -24,15 +24,13 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="The field must not be empty")
-     * @Serializer\Expose()
-     * @Serializer\Groups({"list", "detail"})
+     * @Groups({"getUser"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Serializer\Expose()
-     * @Serializer\Groups({"list", "detail"})
+     * @Groups({"getUser"})
      */
     private $age;
 

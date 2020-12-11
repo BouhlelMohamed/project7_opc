@@ -30,7 +30,6 @@ class Customer implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="customer", cascade={"persist", "remove" })
-     * @Serializer\Expose()
      */
     private $users;
 
@@ -38,7 +37,7 @@ class Customer implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="The field must not be empty")
      * @Assert\Email()
-     * @Serializer\Expose()
+     * @Groups({"getCustomer"})
      */
     private $email;
 

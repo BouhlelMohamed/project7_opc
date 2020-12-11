@@ -8,8 +8,11 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use OpenApi\Annotations as OA;
 use Symfony\Contracts\Cache\ItemInterface;
@@ -39,13 +42,20 @@ class UserController extends AbstractController
      * @OA\Tag(name="Users")
      * @Security(name="Bearer")
      */
-    public function getAllUsersWhoHaveAConnectionWithACustomer(CustomerRepository $customerRepo,int $id)
+    public function getAllUsersWhoHaveAConnectionWithACustomer(CustomerRepository $customerRepo,int $id,SerializerInterface $serializer)
     {
         $value = $this->cache->get('cache_all_users_with_a_customer', function (ItemInterface $item) use ($customerRepo,$id) {
             $item->expiresAfter(10);
             return $customerRepo->findOneById($id)->getUsers()->toArray();
         });
-        return $this->json($customerRepo->findOneById($id)->getUsers()->toArray(),200,[],['groups'=>'user']);
+
+        return new JsonResponse($serializer->serialize($customerRepo->findOneById($id)->getUsers()->toArray(),"json",
+            ["groups" => "getUser"])
+        , JsonResponse::HTTP_OK,
+        [],
+        true
+        );
+//        return $this->json($customerRepo->findOneById($id)->getUsers()->toArray(),200,[],['groups'=>'list']);
     }
 
     /**
