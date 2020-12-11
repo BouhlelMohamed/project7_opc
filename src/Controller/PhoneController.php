@@ -59,7 +59,7 @@ class PhoneController extends AbstractController
             return $repo->findAll();
         });
 
-        return $this->json($value,200,[],['groups' => 'phone:read']);
+        return $this->json($value,200,[],['groups' => 'list_phone']);
     }
 
     /**
@@ -90,7 +90,7 @@ class PhoneController extends AbstractController
             return $repo->findOneById($id);
         });
         if(isset($value)) {
-            return $this->json($value,200,[],['groups' => 'phone:read']);
+            return $this->json($value,200,[],['groups' => 'show_phone']);
         }
         return new JsonResponse("the phone with id $id does not exist",422);
     }
@@ -153,6 +153,6 @@ class PhoneController extends AbstractController
         $this->cache->delete('cache_one_phone');
         $this->cache->delete('cache_all_phone');
 
-        return $this->json($phone,200,[],['groups' => 'phone:read']);
+        return $this->json($phone,200,[],['groups' => 'show_phone']);
     }
 }
