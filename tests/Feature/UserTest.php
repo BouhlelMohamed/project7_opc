@@ -37,8 +37,6 @@ class UserTest extends WebTestCase
 
         $this->customer = $this->addCustomers($this->entityManager);
 
-        $this->user = $this->addUsers($this->entityManager,$this->customer);
-
         $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin");
 
         $customerRepository = static::$container->get(CustomerRepository::class);
@@ -47,6 +45,39 @@ class UserTest extends WebTestCase
 
         $this->client->loginUser($this->loginCustomer);
 
+        $this->userTest1 = $this->addUsers($this->entityManager,$this->loginCustomer);
+
+        $this->user = $this->addUsers($this->entityManager,$this->loginCustomer);
+    }
+
+    public function testGetAllUsersWhoHaveAConnectionWithACustomer()
+    {
+        $customerId = $this->loginCustomer->getId();
+
+        $this->client->request('GET', "/api/users/customers/$customerId");
+
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+        $response = (array)json_decode($this->client->getResponse()->getContent());
+
+        $this->assertCount(2,$response);
+    }
+
+    public function testGetOneUserWhoHaveAConnectionWithACustomer()
+    {
+        $customerId = $this->loginCustomer->getId();
+
+        $userId = $this->userTest1->getId();
+
+        $this->client->request('GET', "/api/users/$userId/customers/$customerId");
+
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+        $response[] = (array)json_decode($this->client->getResponse()->getContent());
+
+        $this->assertCount(1,$response);
+
+        $this->assertSame($userId,$response[0]['id']);
     }
 
     public function testAddANewUserLinkedToACustomer()
