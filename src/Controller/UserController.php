@@ -16,6 +16,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use OpenApi\Annotations as OA;
 use Symfony\Contracts\Cache\ItemInterface;
+use App\Services\Hateoas;
 
 /**
  * Class UserController
@@ -51,15 +52,11 @@ class UserController extends AbstractController
             $item->expiresAfter(self::EXPIRES_AFTER);
             return $customerRepo->findOneById($id)->getUsers()->toArray();
         });
+        $value = $customerRepo->findOneById($id)->getUsers()->toArray();
+        $value = $serializer->serialize($value,"json",
+            ["groups" => "getUsers"]);
 
-//        foreach($value as $key => $item)
-//        {
-//            $item->_links = '/users/' . $item->getId() . '/customers/' . $id;
-//            $value[$key] = $item;
-//        }
-
-        return new JsonResponse($serializer->serialize($value,"json",
-            ["groups" => "getUsers"])
+        return new JsonResponse(Hateoas::buildHateoas($value)
         , JsonResponse::HTTP_OK,
         [],
         true

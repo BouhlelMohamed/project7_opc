@@ -167,6 +167,8 @@
       <path value="$PROJECT_DIR$/vendor/willdurand/hateoas" />
       <path value="$PROJECT_DIR$/vendor/willdurand/hateoas-bundle" />
       <path value="$PROJECT_DIR$/vendor/friendsofsymfony/rest-bundle" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/jsonp-callback-validator" />
     </include_path>
   </component>
   <component name="ProjectId" id="1ks4fi6PGNZ6qceQh5w3zsEK56U" />
@@ -347,11 +349,11 @@
     <state width="1877" height="184" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828094" />
     <state width="1877" height="424" key="GridCell.Tab.0.right/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022888" />
     <state width="1557" height="151" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1607694895996" />
-    <state x="618" y="201" key="NewPhpClassDialog" timestamp="1607544742983">
+    <state x="618" y="201" key="NewPhpClassDialog" timestamp="1607780171452">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="2342" y="60" key="NewPhpClassDialog/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607028344438" />
-    <state x="618" y="201" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1607544742983" />
+    <state x="618" y="201" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1607780171452" />
     <state x="301" y="75" key="SettingsEditor" timestamp="1607540125226">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
