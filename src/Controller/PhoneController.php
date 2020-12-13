@@ -182,8 +182,7 @@ class PhoneController extends AbstractController
 
         $em->flush();
 
-        $this->cache->delete('cache_one_phone');
-        $this->cache->delete('cache_all_phone');
+        exec("php bin/console cache:clear");
 
         return $this->json($phone,JsonResponse::HTTP_OK,[],['groups' => 'show_phone']);
     }

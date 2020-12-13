@@ -176,8 +176,7 @@ class UserController extends AbstractController
 
         $em->flush();
 
-        $this->cache->delete('cache_all_users_with_a_customer');
-        $this->cache->delete('cache_user_with_a_customer');
+        exec("php bin/console cache:clear");
 
         return $this->json($user,JsonResponse::HTTP_OK,[],["groups" => ["show_one_user","getCustomer"]]);
     }
@@ -214,8 +213,7 @@ class UserController extends AbstractController
         if($user->getCustomer()->getId() === $customerRepo->findOneById($customerId)->getId()){
             $em->remove($user);
             $em->flush();
-            $this->cache->delete('cache_all_users_with_a_customer');
-            $this->cache->delete('cache_user_with_a_customer');
+            exec("php bin/console cache:clear");
             return $this->json('User '.$user->getUsername().' is deleted',200);
         }
 
