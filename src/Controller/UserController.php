@@ -38,12 +38,24 @@ class UserController extends AbstractController
     /**
      * @Route("/users/customers/{id}", name="customers_users",methods={"GET"},requirements = {"id"="\d+"})
      * @OA\Response(
-     *     response=200,
-     *     description="Success",
+     *      response=200,
+     *      description="Success",
+     * )
+     * @OA\Response(
+     *     response=400,
+     *     description="BAD REQUEST"
      * )
      * @OA\Response(
      *     response=401,
      *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Response(
+     *     response=403,
+     *     description="ACCESS DENIED"
+     * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
      * )
      * @OA\Tag(name="Users")
      * @Security(name="Bearer")
@@ -67,12 +79,24 @@ class UserController extends AbstractController
     /**
      * @Route("/users/{userId}/customers/{id}", name="customer_one_user",methods={"GET"})
      * @OA\Response(
-     *     response=200,
-     *     description="Success",
+     *      response=200,
+     *      description="Success",
+     * )
+     * @OA\Response(
+     *     response=400,
+     *     description="BAD REQUEST"
      * )
      * @OA\Response(
      *     response=401,
      *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Response(
+     *     response=403,
+     *     description="ACCESS DENIED"
+     * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
      * )
      * @OA\Tag(name="Users")
      * @Security(name="Bearer")
@@ -129,6 +153,10 @@ class UserController extends AbstractController
      *     response=403,
      *     description="ACCESS DENIED"
      * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
+     * )
      * @OA\Tag(name="Users")
      * @Security(name="Bearer")
      */
@@ -167,6 +195,10 @@ class UserController extends AbstractController
      * @OA\Response(
      *     response=403,
      *     description="ACCESS DENIED"
+     * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
      * )
      * @OA\Tag(name="Users")
      * @Security(name="Bearer")

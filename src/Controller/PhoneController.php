@@ -51,6 +51,10 @@ class PhoneController extends AbstractController
      *     response=403,
      *     description="ACCESS DENIED"
      * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
+     * )
      * @OA\Tag(name="Phones")
      * @Security(name="Bearer")
      *
@@ -88,6 +92,10 @@ class PhoneController extends AbstractController
      * @OA\Response(
      *     response=403,
      *     description="ACCESS DENIED"
+     * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
      * )
      * @OA\Tag(name="Phones")
      * @Security(name="Bearer")
@@ -128,7 +136,7 @@ class PhoneController extends AbstractController
      *     )
      * )
      * @OA\Response(
-     *      response=201,
+     *      response=200,
      *      description="Success",
      * )
      * @OA\Response(
@@ -142,6 +150,10 @@ class PhoneController extends AbstractController
      * @OA\Response(
      *     response=403,
      *     description="ACCESS DENIED"
+     * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
      * )
      * @OA\Tag(name="Phones")
      * @Security(name="Bearer")
