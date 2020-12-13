@@ -19,7 +19,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"show_one_user"})
+     * @Groups({"show_one_user","getUsers"})
      */
     private $id;
 

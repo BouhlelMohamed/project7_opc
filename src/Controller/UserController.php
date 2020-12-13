@@ -6,16 +6,18 @@ use App\Entity\User;
 use App\Repository\CustomerRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use http\Env\Response;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use OpenApi\Annotations as OA;
 use Symfony\Contracts\Cache\ItemInterface;
+use App\Services\Hateoas as Hateoas;
 
 /**
  * Class UserController
@@ -24,9 +26,13 @@ use Symfony\Contracts\Cache\ItemInterface;
  */
 class UserController extends AbstractController
 {
-    public function __construct(CacheInterface $cache)
+
+    const EXPIRES_AFTER = 3600;
+
+    public function __construct(CacheInterface $cache,Hateoas $hateoas)
     {
         $this->cache = $cache;
+        $this->hateoas = $hateoas;
     }
 
     /**
@@ -45,12 +51,13 @@ class UserController extends AbstractController
     public function getAllUsersWhoHaveAConnectionWithACustomer(CustomerRepository $customerRepo,int $id,SerializerInterface $serializer)
     {
         $value = $this->cache->get('cache_all_users_with_a_customer', function (ItemInterface $item) use ($customerRepo,$id) {
-            $item->expiresAfter(10);
+            $item->expiresAfter(self::EXPIRES_AFTER);
             return $customerRepo->findOneById($id)->getUsers()->toArray();
         });
+        $value = $serializer->serialize($value,"json",
+            ["groups" => "getUsers"]);
 
-        return new JsonResponse($serializer->serialize($customerRepo->findOneById($id)->getUsers()->toArray(),"json",
-            ["groups" => "getUsers"])
+        return new JsonResponse($this->hateoas->getHateoasToAllUsers($value,$id)
         , JsonResponse::HTTP_OK,
         [],
         true
@@ -73,20 +80,23 @@ class UserController extends AbstractController
     public function getOneUserWhoHaveAConnectionWithACustomer(
         UserRepository $userRepo,int $id,int $userId,SerializerInterface $serializer)
     {
-
         $value = $this->cache->get('cache_user_with_a_customer_'.$userId, function (ItemInterface $item) use ($userRepo,$userId) {
-            $item->expiresAfter(10);
+            $item->expiresAfter(self::EXPIRES_AFTER);
             return $userRepo->findOneById($userId);
         });
 
         if($value->getCustomer()->getId() === $id){
-            return new JsonResponse($serializer->serialize($value,"json",
-                ["groups" => ["show_one_user"]])
+
+            $value = $serializer->serialize($value,"json",
+                ["groups" => ["show_one_user"]]);
+
+            return new JsonResponse($this->hateoas->getHateoasToOneUser($value)
                 , JsonResponse::HTTP_OK,
                 [],
                 true
             );
         }
+
     }
 
     /**
@@ -172,5 +182,7 @@ class UserController extends AbstractController
             $this->cache->delete('cache_user_with_a_customer');
             return $this->json('User '.$user->getUsername().' is deleted',200);
         }
+
+        return $this->json('User '.$user->getUsername().' is not your user',403);
     }
 }
