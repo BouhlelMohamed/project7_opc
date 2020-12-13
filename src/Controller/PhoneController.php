@@ -51,15 +51,23 @@ class PhoneController extends AbstractController
      *     response=403,
      *     description="ACCESS DENIED"
      * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
+     * )
      * @OA\Tag(name="Phones")
      * @Security(name="Bearer")
      *
      */
-    public function getAll(PhoneRepository $repo,SerializerInterface $serializer)
+    public function getAll(Request $request,PhoneRepository $repo,SerializerInterface $serializer)
     {
-        $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo) {
+        $page = $request->query->get('page');
+
+        $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo,$page) {
+            $limit = 10;
+
             $item->expiresAfter(self::EXPIRES_AFTER);
-            return $repo->findAll();
+            return $repo->findAllPhones($page,$limit);
         });
         $value = $serializer->serialize($value,"json",
             ["groups" => "list_phone"]);
@@ -88,6 +96,10 @@ class PhoneController extends AbstractController
      * @OA\Response(
      *     response=403,
      *     description="ACCESS DENIED"
+     * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
      * )
      * @OA\Tag(name="Phones")
      * @Security(name="Bearer")
@@ -128,7 +140,7 @@ class PhoneController extends AbstractController
      *     )
      * )
      * @OA\Response(
-     *      response=201,
+     *      response=200,
      *      description="Success",
      * )
      * @OA\Response(
@@ -142,6 +154,10 @@ class PhoneController extends AbstractController
      * @OA\Response(
      *     response=403,
      *     description="ACCESS DENIED"
+     * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
      * )
      * @OA\Tag(name="Phones")
      * @Security(name="Bearer")
@@ -166,8 +182,7 @@ class PhoneController extends AbstractController
 
         $em->flush();
 
-        $this->cache->delete('cache_one_phone');
-        $this->cache->delete('cache_all_phone');
+        exec("php bin/console cache:clear");
 
         return $this->json($phone,JsonResponse::HTTP_OK,[],['groups' => 'show_phone']);
     }

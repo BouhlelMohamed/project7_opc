@@ -47,6 +47,8 @@ class PhoneTest extends WebTestCase
 
         $phone = (array)json_decode( $this->client->getResponse()->getContent());
 
+        $phone['_links']['allPhones'] = "/api/phones";
+
         $this->client->request('GET', '/api/phones/'.$phone['id']);
 
         $this->assertEquals(200,  $this->client->getResponse()->getStatusCode());

@@ -38,21 +38,37 @@ class UserController extends AbstractController
     /**
      * @Route("/users/customers/{id}", name="customers_users",methods={"GET"},requirements = {"id"="\d+"})
      * @OA\Response(
-     *     response=200,
-     *     description="Success",
+     *      response=200,
+     *      description="Success",
+     * )
+     * @OA\Response(
+     *     response=400,
+     *     description="BAD REQUEST"
      * )
      * @OA\Response(
      *     response=401,
      *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
      * )
+     * @OA\Response(
+     *     response=403,
+     *     description="ACCESS DENIED"
+     * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
+     * )
      * @OA\Tag(name="Users")
      * @Security(name="Bearer")
      */
-    public function getAllUsersWhoHaveAConnectionWithACustomer(CustomerRepository $customerRepo,int $id,SerializerInterface $serializer)
+    public function getAllUsersWhoHaveAConnectionWithACustomer(Request $request,UserRepository $repo,int $id,SerializerInterface $serializer)
     {
-        $value = $this->cache->get('cache_all_users_with_a_customer', function (ItemInterface $item) use ($customerRepo,$id) {
+        $page = $request->query->get('page');
+
+        $value = $this->cache->get('cache_all_users_with_a_customer', function (ItemInterface $item) use ($repo,$id,$page) {
+            $limit = 5;
+
             $item->expiresAfter(self::EXPIRES_AFTER);
-            return $customerRepo->findOneById($id)->getUsers()->toArray();
+            return $repo->findUsersByCustomersId($id,$page,$limit);
         });
         $value = $serializer->serialize($value,"json",
             ["groups" => "getUsers"]);
@@ -67,12 +83,24 @@ class UserController extends AbstractController
     /**
      * @Route("/users/{userId}/customers/{id}", name="customer_one_user",methods={"GET"})
      * @OA\Response(
-     *     response=200,
-     *     description="Success",
+     *      response=200,
+     *      description="Success",
+     * )
+     * @OA\Response(
+     *     response=400,
+     *     description="BAD REQUEST"
      * )
      * @OA\Response(
      *     response=401,
      *     description="UNAUTHORIZED - JWT Token not found | Expired JWT Token | Invalid JWT Token"
+     * )
+     * @OA\Response(
+     *     response=403,
+     *     description="ACCESS DENIED"
+     * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
      * )
      * @OA\Tag(name="Users")
      * @Security(name="Bearer")
@@ -129,6 +157,10 @@ class UserController extends AbstractController
      *     response=403,
      *     description="ACCESS DENIED"
      * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
+     * )
      * @OA\Tag(name="Users")
      * @Security(name="Bearer")
      */
@@ -144,8 +176,7 @@ class UserController extends AbstractController
 
         $em->flush();
 
-        $this->cache->delete('cache_all_users_with_a_customer');
-        $this->cache->delete('cache_user_with_a_customer');
+        exec("php bin/console cache:clear");
 
         return $this->json($user,JsonResponse::HTTP_OK,[],["groups" => ["show_one_user","getCustomer"]]);
     }
@@ -168,6 +199,10 @@ class UserController extends AbstractController
      *     response=403,
      *     description="ACCESS DENIED"
      * )
+     * @OA\Response(
+     *     response=500,
+     *     description="Internal Server Error"
+     * )
      * @OA\Tag(name="Users")
      * @Security(name="Bearer")
      */
@@ -178,8 +213,7 @@ class UserController extends AbstractController
         if($user->getCustomer()->getId() === $customerRepo->findOneById($customerId)->getId()){
             $em->remove($user);
             $em->flush();
-            $this->cache->delete('cache_all_users_with_a_customer');
-            $this->cache->delete('cache_user_with_a_customer');
+            exec("php bin/console cache:clear");
             return $this->json('User '.$user->getUsername().' is deleted',200);
         }
 
