@@ -59,11 +59,15 @@ class PhoneController extends AbstractController
      * @Security(name="Bearer")
      *
      */
-    public function getAll(PhoneRepository $repo,SerializerInterface $serializer)
+    public function getAll(Request $request,PhoneRepository $repo,SerializerInterface $serializer)
     {
-        $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo) {
+        $page = $request->query->get('page');
+
+        $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo,$page) {
+            $limit = 10;
+
             $item->expiresAfter(self::EXPIRES_AFTER);
-            return $repo->findAll();
+            return $repo->findAllPhones($page,$limit);
         });
         $value = $serializer->serialize($value,"json",
             ["groups" => "list_phone"]);

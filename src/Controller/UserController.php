@@ -60,11 +60,15 @@ class UserController extends AbstractController
      * @OA\Tag(name="Users")
      * @Security(name="Bearer")
      */
-    public function getAllUsersWhoHaveAConnectionWithACustomer(CustomerRepository $customerRepo,int $id,SerializerInterface $serializer)
+    public function getAllUsersWhoHaveAConnectionWithACustomer(Request $request,UserRepository $repo,int $id,SerializerInterface $serializer)
     {
-        $value = $this->cache->get('cache_all_users_with_a_customer', function (ItemInterface $item) use ($customerRepo,$id) {
+        $page = $request->query->get('page');
+
+        $value = $this->cache->get('cache_all_users_with_a_customer', function (ItemInterface $item) use ($repo,$id,$page) {
+            $limit = 5;
+
             $item->expiresAfter(self::EXPIRES_AFTER);
-            return $customerRepo->findOneById($id)->getUsers()->toArray();
+            return $repo->findUsersByCustomersId($id,$page,$limit);
         });
         $value = $serializer->serialize($value,"json",
             ["groups" => "getUsers"]);
