@@ -1,7 +1,5 @@
 Bilemo
 
-Codacy Badge
-
 This REST API provides a catalog of mobiles for our clients, and the possibility to manage their users.
 
 Visit the api doc
