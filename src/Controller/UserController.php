@@ -6,17 +6,18 @@ use App\Entity\User;
 use App\Repository\CustomerRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use http\Env\Response;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use OpenApi\Annotations as OA;
 use Symfony\Contracts\Cache\ItemInterface;
-use App\Services\Hateoas;
+use App\Services\Hateoas as Hateoas;
 
 /**
  * Class UserController
@@ -28,9 +29,10 @@ class UserController extends AbstractController
 
     const EXPIRES_AFTER = 3600;
 
-    public function __construct(CacheInterface $cache)
+    public function __construct(CacheInterface $cache,Hateoas $hateoas)
     {
         $this->cache = $cache;
+        $this->hateoas = $hateoas;
     }
 
     /**
@@ -52,11 +54,10 @@ class UserController extends AbstractController
             $item->expiresAfter(self::EXPIRES_AFTER);
             return $customerRepo->findOneById($id)->getUsers()->toArray();
         });
-        $value = $customerRepo->findOneById($id)->getUsers()->toArray();
         $value = $serializer->serialize($value,"json",
             ["groups" => "getUsers"]);
 
-        return new JsonResponse(Hateoas::buildHateoas($value)
+        return new JsonResponse($this->hateoas->getHateoasToAllUsers($value,$id)
         , JsonResponse::HTTP_OK,
         [],
         true
@@ -85,13 +86,17 @@ class UserController extends AbstractController
         });
 
         if($value->getCustomer()->getId() === $id){
-            return new JsonResponse($serializer->serialize($value,"json",
-                ["groups" => ["show_one_user"]])
+
+            $value = $serializer->serialize($value,"json",
+                ["groups" => ["show_one_user"]]);
+
+            return new JsonResponse($this->hateoas->getHateoasToOneUser($value)
                 , JsonResponse::HTTP_OK,
                 [],
                 true
             );
         }
+
     }
 
     /**

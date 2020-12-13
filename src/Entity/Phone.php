@@ -21,7 +21,7 @@ class Phone
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"show_phone"})
+     * @Groups({"show_phone","list_phone"})
      */
     private $id;
 
@@ -38,7 +38,7 @@ class Phone
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"show_phone", "list_phone"})
+     * @Groups({"show_phone"})
      */
     private $price;
 

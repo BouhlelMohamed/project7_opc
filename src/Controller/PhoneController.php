@@ -7,15 +7,15 @@ use App\Repository\PhoneRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use OpenApi\Annotations as OA;
+use App\Services\Hateoas as Hateoas;
 
 /**
  * Class PhoneController
@@ -27,9 +27,10 @@ class PhoneController extends AbstractController
 
     const EXPIRES_AFTER = 3600;
 
-    public function __construct(CacheInterface $cache)
+    public function __construct(CacheInterface $cache,Hateoas $hateoas)
     {
         $this->cache = $cache;
+        $this->hateoas = $hateoas;
     }
 
     /**
@@ -54,14 +55,20 @@ class PhoneController extends AbstractController
      * @Security(name="Bearer")
      *
      */
-    public function getAll(PhoneRepository $repo)
+    public function getAll(PhoneRepository $repo,SerializerInterface $serializer)
     {
         $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo) {
             $item->expiresAfter(self::EXPIRES_AFTER);
             return $repo->findAll();
         });
+        $value = $serializer->serialize($value,"json",
+            ["groups" => "list_phone"]);
 
-        return $this->json($value,200,[],['groups' => 'list_phone']);
+        return new JsonResponse($this->hateoas->getHateoasAllPhones($value)
+            , JsonResponse::HTTP_OK,
+            [],
+            true
+        );
     }
 
     /**
@@ -85,16 +92,23 @@ class PhoneController extends AbstractController
      * @OA\Tag(name="Phones")
      * @Security(name="Bearer")
     */
-    public function getOnePhone(PhoneRepository $repo,int $id)
+    public function getOnePhone(PhoneRepository $repo,int $id,SerializerInterface $serializer)
     {
         $value = $this->cache->get('cache_one_phone_'.$id, function (ItemInterface $item) use ($repo,$id) {
             $item->expiresAfter(self::EXPIRES_AFTER);
             return $repo->findOneById($id);
         });
         if(isset($value)) {
-            return $this->json($value,200,[],['groups' => 'show_phone']);
+            $value = $serializer->serialize($value,"json",
+                ["groups" => "show_phone"]);
+
+            return new JsonResponse($this->hateoas->getHateoasOnePhone($value)
+                , JsonResponse::HTTP_OK,
+                [],
+                true
+            );
         }
-        return new JsonResponse("the phone with id $id does not exist",422);
+        return new JsonResponse("the phone with id $id does not exist",JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
     }
 
     /**
@@ -155,6 +169,6 @@ class PhoneController extends AbstractController
         $this->cache->delete('cache_one_phone');
         $this->cache->delete('cache_all_phone');
 
-        return $this->json($phone,200,[],['groups' => 'show_phone']);
+        return $this->json($phone,JsonResponse::HTTP_OK,[],['groups' => 'show_phone']);
     }
 }
