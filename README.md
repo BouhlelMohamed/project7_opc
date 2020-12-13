@@ -1,4 +1,4 @@
-Bilemo
+<h3>Bilemo</h3>
 
 This REST API provides a catalog of mobiles for our clients, and the possibility to manage their users.
 
