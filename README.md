@@ -20,5 +20,4 @@ DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name
 
 3 - Install composer -> Composer installation doc
 
-4 - Run composer.phar to install dependencies
-
+4 - composer install
