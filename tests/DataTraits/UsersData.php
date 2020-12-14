@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 trait UsersData {
    
-    public function addUsers(EntityManagerInterface $em,Customer $customer,int $quantity=0)
+    public function addUsers(EntityManagerInterface $entityManager,Customer $customer,int $quantity=0)
     {
         for($i = 0; $i <= $quantity; $i++)
         {
@@ -15,10 +15,10 @@ trait UsersData {
             $user->setUsername('testUser');
             $user->setAge(15);
             $user->setCustomer($customer);
-    
-            $em->persist($user);
+
+            $entityManager->persist($user);
         }
-        $em->flush();
+        $entityManager->flush();
 
         return $user;
     }
