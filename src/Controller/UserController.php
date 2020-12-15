@@ -130,7 +130,7 @@ class UserController extends AbstractController
     /**
      * @Route("/users/customers/{id}", name="add_user_for_customers",methods={"POST"})
      * @OA\Parameter(
-     *   name="Phone",
+     *   name="User",
      *   description="Add user",
      *   in="query",
      *   required=true,
@@ -170,15 +170,18 @@ class UserController extends AbstractController
         $user = new User();
         $user->setUsername($request->get('username'));
         $user->setAge($request->get('age'));
-        $user->setCustomer($customer);
+        if($customer != null)
+        {
+            $user->setCustomer($customer);
+            $em->persist($user);
+            $em->flush();
+            exec("php bin/console cache:clear");
 
-        $em->persist($user);
+            return $this->json($user,JsonResponse::HTTP_OK,[],["groups" => ["show_one_user","getCustomer"]]);
+        }
 
-        $em->flush();
+        return $this->json(['message'=>'Customer not exist'],500);
 
-        exec("php bin/console cache:clear");
-
-        return $this->json($user,JsonResponse::HTTP_OK,[],["groups" => ["show_one_user","getCustomer"]]);
     }
 
     /**
@@ -217,6 +220,6 @@ class UserController extends AbstractController
             return $this->json('User '.$user->getUsername().' is deleted',200);
         }
 
-        return $this->json('User '.$user->getUsername().' is not your user',403);
+        return $this->json(['message'=>'User '.$user->getUsername().' is not your user'],403);
     }
 }
