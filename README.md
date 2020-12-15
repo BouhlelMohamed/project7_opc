@@ -1,3 +1,6 @@
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c08a4cacaa17486ab76cbf4fa494c918)](https://app.codacy.com/gh/BouhlelMohamed/project7_opc?utm_source=github.com&utm_medium=referral&utm_content=BouhlelMohamed/project7_opc&utm_campaign=Badge_Grade)
+
 <h3>Bilemo</h3>
 
 Lien vers la =><a href="http://p7.mohamed-bouhlel.com/doc">doc</a>
