@@ -22,7 +22,7 @@ class PhoneRepository extends ServiceEntityRepository
 
     public function findAllPhones($page = 1, $limit)
     {
-        $page = is_null($page) ? 1 : $page;
+        $page = ($page === null) ? 1 : $page;
         $query = $this->createQueryBuilder('p')
             ->getQuery()
             ->setFirstResult(($page - 1) * $limit)
