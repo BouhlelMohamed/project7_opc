@@ -5,6 +5,9 @@
 
 Lien vers la =><a href="http://p7.mohamed-bouhlel.com/doc">doc</a>
 
+Email de test = admin@admin.com
+mdp de test = admin
+
 Packages : 
 
     Symfony 5.1.8
