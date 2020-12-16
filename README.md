@@ -9,6 +9,7 @@ Packages :
 
     Symfony 5.1.8
     NelmioApiDocBundle
+    PHPUNIT
 
 Installation
 
