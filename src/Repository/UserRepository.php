@@ -22,7 +22,7 @@ class UserRepository extends ServiceEntityRepository
 
     public function findUsersByCustomersId($customerId,$page = 1, $limit)
     {
-        $page = is_null($page) ? 1 : $page;
+        $page = ($page === null) ? 1 : $page;
         $query = $this->createQueryBuilder('u')
             ->andWhere('u.customer IN (:customer)')
             ->setParameter('customer', $customerId)

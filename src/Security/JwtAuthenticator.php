@@ -57,10 +57,14 @@ class JwtAuthenticator extends AbstractGuardAuthenticator
                             );
             return $this->em->getRepository(Customer::class)
                     ->findOneBy([
-                            'email' => $jwt['user'],
+                            'email' => $jwt['customer'],
                     ]);
         }catch (\Exception $exception) {
-                throw new AuthenticationException($exception->getMessage());
+            return new JsonResponse(['message' => "you dont have an account"]
+                , JsonResponse::HTTP_INTERNAL_SERVER_ERROR,
+                [],
+                true
+            );
         }
     }
 

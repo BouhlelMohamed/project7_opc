@@ -35,6 +35,14 @@ class PhoneController extends AbstractController
 
     /**
      * @Route("/phones", name="all_phones",methods={"GET"})
+     * @OA\Parameter(
+     *   name="Page",
+     *   in="query",
+     *   required=true,
+     *   @OA\Schema(
+     *     @OA\Property(property="page", type="number")
+     *     )
+     * )
      * @OA\Response(
      *      response=200,
      *      description="Success",
@@ -63,12 +71,13 @@ class PhoneController extends AbstractController
     {
         $page = $request->query->get('page');
 
-        $value = $this->cache->get('cache_all_phone', function (ItemInterface $item) use ($repo,$page) {
+        $value = $this->cache->get('cache_all_phone'.$page, function (ItemInterface $item) use ($repo,$page) {
             $limit = 10;
 
             $item->expiresAfter(self::EXPIRES_AFTER);
             return $repo->findAllPhones($page,$limit);
         });
+
         $value = $serializer->serialize($value,"json",
             ["groups" => "list_phone"]);
 
