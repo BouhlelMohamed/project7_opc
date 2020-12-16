@@ -37,6 +37,14 @@ class UserController extends AbstractController
 
     /**
      * @Route("/users/customers/{id}", name="customers_users",methods={"GET"},requirements = {"id"="\d+"})
+     * @OA\Parameter(
+     *   name="Page",
+     *   in="query",
+     *   required=true,
+     *   @OA\Schema(
+     *     @OA\Property(property="page", type="number")
+     *     )
+     * )
      * @OA\Response(
      *      response=200,
      *      description="Success",
@@ -64,7 +72,7 @@ class UserController extends AbstractController
     {
         $page = $request->query->get('page');
 
-        $value = $this->cache->get('cache_all_users_with_a_customer', function (ItemInterface $item) use ($repo,$id,$page) {
+        $value = $this->cache->get('cache_all_users_with_a_customer_'.$page, function (ItemInterface $item) use ($repo,$id,$page) {
             $limit = 5;
 
             $item->expiresAfter(self::EXPIRES_AFTER);
