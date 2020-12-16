@@ -25,17 +25,19 @@ class PhoneTest extends WebTestCase
 
         $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin");
 
-        $customerRepository = static::$container->get(CustomerRepository::class);
+        $this->client->request('POST', "/auth/login?email=admin@admin.com&password=admin");
 
-        $this->loginCustomer = $customerRepository->findOneByEmail('admin@admin.com');
+        $bearer = json_decode($this->client->getResponse()->getContent())->token;
 
-        $this->client->loginUser($this->loginCustomer);
-
+        $this->headers = array(
+            'HTTP_AUTHORIZATION' => $bearer,
+            'CONTENT_TYPE' => 'application/json',
+        );
     }
 
     public function testShowAllPhones()
     {
-        $this->client->request('GET', '/api/phones');
+        $this->client->request('GET', '/api/phones',array(),array(),$this->headers);
 
         $this->assertEquals(200,  $this->client->getResponse()->getStatusCode());
     }
@@ -43,13 +45,13 @@ class PhoneTest extends WebTestCase
     public function testShowOnePhone()
     {
         $this->client->request('POST', '/api/phones',['name'=> 'Iphone XR','price' => 1250,
-        'color' => 'Red','description' => 'Best Phone']);
+        'color' => 'Red','description' => 'Best Phone'],[],$this->headers);
 
         $phone = (array)json_decode( $this->client->getResponse()->getContent());
 
         $phone['_links']['allPhones'] = "/api/phones";
 
-        $this->client->request('GET', '/api/phones/'.$phone['id']);
+        $this->client->request('GET', '/api/phones/'.$phone['id'],[],[],$this->headers);
 
         $this->assertEquals(200,  $this->client->getResponse()->getStatusCode());
 
@@ -63,7 +65,7 @@ class PhoneTest extends WebTestCase
     public function testInsertOnePhone()
     {
         $this->client->request('POST', '/api/phones',['name'=> 'Iphone XR','price' => 1250,
-        'color' => 'Red','description' => 'Best Phone']);
+        'color' => 'Red','description' => 'Best Phone'],[],$this->headers);
 
         $this->assertEquals(200,  $this->client->getResponse()->getStatusCode());
     }

@@ -39,22 +39,25 @@ class UserTest extends WebTestCase
 
         $this->client->request('POST', "/auth/register?email=admin@admin.com&password=admin");
 
-        $customerRepository = static::$container->get(CustomerRepository::class);
+        $this->client->request('POST', "/auth/login?email=admin@admin.com&password=admin");
 
-        $this->loginCustomer = $customerRepository->findOneByEmail('admin@admin.com');
+        $bearer = json_decode($this->client->getResponse()->getContent())->token;
 
-        $this->client->loginUser($this->loginCustomer);
+        $this->headers = array(
+            'HTTP_AUTHORIZATION' => $bearer,
+            'CONTENT_TYPE' => 'application/json',
+        );
 
-        $this->userTest1 = $this->addUsers($this->entityManager,$this->loginCustomer);
+        $this->userTest1 = $this->addUsers($this->entityManager,$this->customer);
 
-        $this->user = $this->addUsers($this->entityManager,$this->loginCustomer);
+        $this->user = $this->addUsers($this->entityManager,$this->customer);
     }
 
     public function testGetAllUsersWhoHaveAConnectionWithACustomer()
     {
-        $customerId = $this->loginCustomer->getId();
+        $customerId = $this->customer->getId();
 
-        $this->client->request('GET', "/api/users/customers/$customerId");
+        $this->client->request('GET', "/api/users/customers/$customerId",[],[],$this->headers);
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
@@ -65,11 +68,11 @@ class UserTest extends WebTestCase
 
     public function testGetOneUserWhoHaveAConnectionWithACustomer()
     {
-        $customerId = $this->loginCustomer->getId();
+        $customerId = $this->customer->getId();
 
         $userId = $this->userTest1->getId();
 
-        $this->client->request('GET', "/api/users/$userId/customers/$customerId");
+        $this->client->request('GET', "/api/users/$userId/customers/$customerId",[],[],$this->headers);
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
@@ -84,7 +87,7 @@ class UserTest extends WebTestCase
     {
         $customerId = $this->customer->getId();
 
-        $this->client->request('POST', "/api/users/customers/$customerId", ['username' => 'TestUsername', 'age' => 10, 'customerId' => $customerId]);
+        $this->client->request('POST', "/api/users/customers/$customerId", ['username' => 'TestUsername', 'age' => 10, 'customerId' => $customerId],[],$this->headers);
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
@@ -99,7 +102,7 @@ class UserTest extends WebTestCase
 
         $userId = $this->user->getId();
 
-        $this->client->request("DELETE", "/api/users/$userId/customers/$customerId");
+        $this->client->request("DELETE", "/api/users/$userId/customers/$customerId",[],[],$this->headers);
 
         if($this->user->getCustomer()->getId() === $customerId){
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
@@ -116,7 +119,7 @@ class UserTest extends WebTestCase
 
         $userId = $this->user->getId();
 
-        $this->client->request("DELETE", "/api/users/$userId/customers/$customerId");
+        $this->client->request("DELETE", "/api/users/$userId/customers/$customerId",[],[],$this->headers);
 
         $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
     }

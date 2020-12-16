@@ -192,7 +192,7 @@
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.zend.framework.tool" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="PHPUnit.PhoneTest.testShowAllPhones">
+  <component name="RunManager" selected="PHPUnit.All tests">
     <configuration name="All tests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <CommandLine>
         <PhpTestInterpreterSettings>
@@ -284,6 +284,7 @@
       <updated>1606476069907</updated>
       <workItem from="1606476071053" duration="1366000" />
       <workItem from="1606664017264" duration="8773000" />
+      <workItem from="1608144982501" duration="1059000" />
     </task>
     <servers />
   </component>
@@ -337,34 +338,34 @@
     </state>
     <state x="2296" y="24" key="FileChooserDialogImpl/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607033099642" />
     <state x="580" y="171" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1606476067251" />
-    <state width="1557" height="314" key="GridCell.Tab.0.bottom" timestamp="1608140050715">
+    <state width="1557" height="307" key="GridCell.Tab.0.bottom" timestamp="1608145891885">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="211" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
     <state width="1877" height="184" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828094" />
     <state width="1877" height="424" key="GridCell.Tab.0.bottom/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022888" />
-    <state width="1557" height="314" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1608140050715" />
-    <state width="1557" height="314" key="GridCell.Tab.0.center" timestamp="1608140050714">
+    <state width="1557" height="307" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1608145891885" />
+    <state width="1557" height="307" key="GridCell.Tab.0.center" timestamp="1608145891885">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="211" key="GridCell.Tab.0.center/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
     <state width="1877" height="184" key="GridCell.Tab.0.center/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828094" />
     <state width="1877" height="424" key="GridCell.Tab.0.center/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022887" />
-    <state width="1557" height="314" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1608140050714" />
-    <state width="1557" height="314" key="GridCell.Tab.0.left" timestamp="1608140050710">
+    <state width="1557" height="307" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1608145891885" />
+    <state width="1557" height="307" key="GridCell.Tab.0.left" timestamp="1608145891884">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="211" key="GridCell.Tab.0.left/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
     <state width="1877" height="184" key="GridCell.Tab.0.left/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828093" />
     <state width="1877" height="424" key="GridCell.Tab.0.left/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022887" />
-    <state width="1557" height="314" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1608140050710" />
-    <state width="1557" height="314" key="GridCell.Tab.0.right" timestamp="1608140050714">
+    <state width="1557" height="307" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1608145891884" />
+    <state width="1557" height="307" key="GridCell.Tab.0.right" timestamp="1608145891885">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="211" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@0.0.1600.860" timestamp="1606851171505" />
     <state width="1877" height="184" key="GridCell.Tab.0.right/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607067828094" />
     <state width="1877" height="424" key="GridCell.Tab.0.right/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607112022888" />
-    <state width="1557" height="314" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1608140050714" />
+    <state width="1557" height="307" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1608145891885" />
     <state x="618" y="201" key="NewPhpClassDialog" timestamp="1607780171452">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -375,12 +376,16 @@
     </state>
     <state x="1961" y="-92" key="SettingsEditor/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1606855465894" />
     <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1607873701437" />
-    <state x="556" y="98" width="555" height="663" key="find.popup" timestamp="1608137682136">
+    <state width="498" height="446" key="SwitcherDM" timestamp="1608145614077">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1600.860@0.0.1600.860" timestamp="1608145614077" />
+    <state x="556" y="98" width="555" height="663" key="find.popup" timestamp="1608145235780">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="2267" y="-64" width="658" height="801" key="find.popup/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607028445464" />
     <state x="2267" y="119" width="658" height="801" key="find.popup/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607109079933" />
-    <state x="556" y="98" width="555" height="663" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1608137682136" />
+    <state x="556" y="98" width="555" height="663" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1608145235780" />
     <state x="2201" y="63" width="700" height="530" key="recent.locations.popup" timestamp="1606853853479">
       <screen x="1600" y="-183" width="1920" height="1040" />
     </state>
@@ -389,19 +394,19 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1608064877721" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1608138808429">
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1608145203938">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="2156" y="35" width="807" height="820" key="search.everywhere.popup/0.0.1600.860/1600.-183.1920.1040/3520.-174.1920.1040@1600.-183.1920.1040" timestamp="1607066635179" />
     <state x="2156" y="218" width="807" height="820" key="search.everywhere.popup/0.0.1600.860/3520.0.1920.1040/1600.0.1920.1040@1600.0.1920.1040" timestamp="1607110502145" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1608138808429" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1608145203938" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/tests/Feature/PhoneTest.php</url>
-          <line>35</line>
+          <line>37</line>
           <properties>
             <option name="className" value="\App\Tests\Controller\PhoneTest" />
             <option name="methodName" value="testShowAllPhones" />
