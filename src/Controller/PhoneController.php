@@ -149,7 +149,7 @@ class PhoneController extends AbstractController
      *     )
      * )
      * @OA\Response(
-     *      response=200,
+     *      response=201,
      *      description="Success",
      * )
      * @OA\Response(
@@ -193,6 +193,6 @@ class PhoneController extends AbstractController
 
         exec("php bin/console cache:clear");
 
-        return $this->json($phone,JsonResponse::HTTP_OK,[],['groups' => 'show_phone']);
+        return $this->json($phone,JsonResponse::HTTP_CREATED,[],['groups' => 'show_phone']);
     }
 }
