@@ -1,4 +1,5 @@
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/36226f74e0554de1806dd0dde27b3a2f)](https://app.codacy.com/gh/BouhlelMohamed/project7_opc?utm_source=github.com&utm_medium=referral&utm_content=BouhlelMohamed/project7_opc&utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c08a4cacaa17486ab76cbf4fa494c918)](https://app.codacy.com/gh/BouhlelMohamed/project7_opc?utm_source=github.com&utm_medium=referral&utm_content=BouhlelMohamed/project7_opc&utm_campaign=Badge_Grade)
 
 <h3>Bilemo</h3>
